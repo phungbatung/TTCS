@@ -24,5 +24,9 @@ public class PlayerGroundedState : PlayerState
         base.Update();
         if (Input.GetKeyDown(KeyCode.Space))
             stateMachine.ChangeState(player.jumpState);
+        if (!player.IsGrounded())
+            stateMachine.ChangeState(player.airState);
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+            stateMachine.ChangeState(player.primaryAttack);
     }
 }

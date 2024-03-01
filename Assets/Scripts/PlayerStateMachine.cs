@@ -18,5 +18,4 @@ public class PlayerStateMachine
         currentState.Enter();
     }
 
-    
 }
