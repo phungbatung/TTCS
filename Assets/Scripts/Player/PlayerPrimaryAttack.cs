@@ -16,7 +16,6 @@ public class PlayerPrimaryAttack : PlayerState
         player.ZeroVelocity();
         if (Time.time - lastTimeAttacked > 2 || attackCounter >= 2)
             attackCounter = 0;
-        Debug.Log(attackCounter);
         player.anim.SetInteger("AttackCounter", attackCounter);
         attackCounter++;
     }
