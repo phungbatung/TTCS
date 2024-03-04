@@ -11,7 +11,7 @@ public class PlayerWallJumpState : PlayerState
     public override void Enter()
     {
         base.Enter();
-        player.SetVelocity(-.7f * player.facingDir * player.moveSpeed, player.jumpForce);
+        player.SetVelocity(-player.facingDir * player.moveSpeed, player.jumpForce);
     }
 
     public override void Exit()

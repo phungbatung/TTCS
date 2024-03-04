@@ -12,7 +12,6 @@ public class PlayerDashState : PlayerState
     {
         base.Enter();
         stateTimer = player.dashDuration;
-        Debug.Log("Dash state");
         
     }
 
@@ -29,5 +28,9 @@ public class PlayerDashState : PlayerState
         player.SetVelocity(player.dashDir * player.dashSpeed, 0);
         if (stateTimer <= 0)
             stateMachine.ChangeState(player.idleState);
+    }
+
+    protected override void CheckForDash()
+    {
     }
 }

@@ -14,9 +14,10 @@ public class PlayerPrimaryAttack : PlayerState
     {
         base.Enter();
         player.ZeroVelocity();
-        if (Time.time - lastTimeAttacked > 2 || attackCounter >= 2)
+        if (Time.time - lastTimeAttacked > 2 || attackCounter >= 3)
             attackCounter = 0;
         player.anim.SetInteger("AttackCounter", attackCounter);
+        player.SetVelocity(player.facingDir * player.attackMovement[attackCounter].x, player.attackMovement[attackCounter].y);
         attackCounter++;
     }
 

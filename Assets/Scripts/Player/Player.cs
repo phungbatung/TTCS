@@ -8,11 +8,14 @@ public class Player : Entity
     
     
     public float jumpForce;
+
     public float dashSpeed;
     public float dashDuration;
     public int dashDir;
     public float dashCooldown;
     [HideInInspector]public float lastTimeDash;
+
+    public Vector2[] attackMovement; 
     
 
     private PlayerStateMachine stateMachine;
