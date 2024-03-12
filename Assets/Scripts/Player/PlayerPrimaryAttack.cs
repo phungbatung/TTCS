@@ -26,6 +26,7 @@ public class PlayerPrimaryAttack : PlayerState
         base.Exit();
         lastTimeAttacked = Time.time;
         isTrigger = false;
+        player.StartCoroutine("BusyFor", 0.15f);
     }
 
     public override void Update()
@@ -33,6 +34,7 @@ public class PlayerPrimaryAttack : PlayerState
         base.Update();
         if (isTrigger)
             stateMachine.ChangeState(player.idleState);
+        
 
     }
 }

@@ -15,18 +15,19 @@ public class Player : Entity
     public float dashCooldown;
     [HideInInspector]public float lastTimeDash;
 
-    public Vector2[] attackMovement; 
+    public Vector2[] attackMovement;
+    
     
 
     private PlayerStateMachine stateMachine;
-    public PlayerIdleState idleState;
-    public PlayerMoveState moveState;
-    public PlayerJumpState jumpState;
-    public PlayerAirState airState;
-    public PlayerWallSlideState wallSlide;
-    public PlayerWallJumpState wallJump;
-    public PlayerDashState dashState;
-    public PlayerPrimaryAttack primaryAttack;
+    public PlayerIdleState idleState { get; private set; }
+    public PlayerMoveState moveState { get; private set; }
+    public PlayerJumpState jumpState { get; private set; }
+    public PlayerAirState airState { get; private set; }
+    public PlayerWallSlideState wallSlide { get; private set; }
+    public PlayerWallJumpState wallJump { get; private set; }
+    public PlayerDashState dashState { get; private set; }
+    public PlayerPrimaryAttack primaryAttack { get; private set; }
 
     protected override void Awake()
     {

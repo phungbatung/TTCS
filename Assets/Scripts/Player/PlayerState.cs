@@ -32,6 +32,8 @@ public class PlayerState
         xInput = Input.GetAxisRaw("Horizontal");
         player.anim.SetFloat("yVelocity", player.rb.velocity.y);
         stateTimer -= Time.deltaTime;
+        if (player.isBusy)
+            player.ZeroVelocity();
         CheckForDash();
     }
     protected virtual void CheckForDash()

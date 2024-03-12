@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Enemy : Entity
 {
-    public EnemyStateMachine stateMachine;
+    protected EnemyStateMachine stateMachine;
     protected override void Awake()
     {
         base.Awake();

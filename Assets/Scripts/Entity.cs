@@ -6,10 +6,13 @@ public class Entity : MonoBehaviour
 {
     public Animator anim;
     public Rigidbody2D rb;
+    public EntityFX entityFX;
 
     public float moveSpeed;
     public bool isFacingRight;
     public int facingDir;
+
+    public bool isBusy;
 
     [SerializeField] protected Transform groundCheckPoint;
     [SerializeField] protected float groundCheckDistance;
@@ -25,6 +28,7 @@ public class Entity : MonoBehaviour
     {
         anim = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody2D>();
+        entityFX = GetComponent<EntityFX>();
     }
     protected virtual void Start()
     {
@@ -77,6 +81,15 @@ public class Entity : MonoBehaviour
     public virtual void Damaged()
     {
         Debug.Log($"{gameObject.name} is Damaged");
+        entityFX.StartCoroutine("FlashFX");
 
-    }    
+    }
+
+
+    public virtual IEnumerator BusyFor(float _time)
+    {
+        isBusy = true;
+        yield return new WaitForSeconds(_time);
+        isBusy = false;
+    }
 }

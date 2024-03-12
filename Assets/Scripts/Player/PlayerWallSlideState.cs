@@ -21,10 +21,13 @@ public class PlayerWallSlideState : PlayerState
     public override void Update()
     {
         base.Update();
-        player.SetVelocity(player.rb.velocity.x, -.5f);
+        player.SetVelocity(0, -.5f);
         if (player.IsGrounded())
             stateMachine.ChangeState(player.idleState);
+        if (xInput*player.facingDir == -1||!player.IsWallDetected())
+            stateMachine.ChangeState(player.airState);
         if (Input.GetKeyDown(KeyCode.Space))
             stateMachine.ChangeState(player.wallJump);
+
     }
 }
