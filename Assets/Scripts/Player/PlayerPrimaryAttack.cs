@@ -12,12 +12,13 @@ public class PlayerPrimaryAttack : PlayerState
 
     public override void Enter()
     {
+
         base.Enter();
-        player.ZeroVelocity();
-        if (Time.time - lastTimeAttacked > 2 || attackCounter >= 3)
+        if (Time.time - lastTimeAttacked > 2 || attackCounter >= 3) //Check for reset combo
             attackCounter = 0;
-        player.anim.SetInteger("AttackCounter", attackCounter);
+
         player.SetVelocity(player.facingDir * player.attackMovement[attackCounter].x, player.attackMovement[attackCounter].y);
+        player.anim.SetInteger("AttackCounter", attackCounter);
         attackCounter++;
     }
 
@@ -26,7 +27,7 @@ public class PlayerPrimaryAttack : PlayerState
         base.Exit();
         lastTimeAttacked = Time.time;
         isTrigger = false;
-        player.StartCoroutine("BusyFor", 0.15f);
+        /*player.StartCoroutine("BusyFor", 0.15f);*/
     }
 
     public override void Update()
@@ -34,7 +35,5 @@ public class PlayerPrimaryAttack : PlayerState
         base.Update();
         if (isTrigger)
             stateMachine.ChangeState(player.idleState);
-        
-
     }
 }

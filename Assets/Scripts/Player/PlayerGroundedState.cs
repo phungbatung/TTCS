@@ -1,17 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Timeline.Actions;
 using UnityEngine;
 
 public class PlayerGroundedState : PlayerState
 {
-    
     public PlayerGroundedState(PlayerStateMachine _stateMachine, Player _player, string _animBoolName) : base(_stateMachine, _player, _animBoolName)
     {
     }
 
+    protected bool isReturn = false;
     public override void Enter()
     {
         base.Enter();
+        isReturn = false;
     }
 
     public override void Exit()
@@ -27,6 +29,9 @@ public class PlayerGroundedState : PlayerState
         if (!player.IsGrounded())
             stateMachine.ChangeState(player.airState);
         if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
             stateMachine.ChangeState(player.primaryAttack);
+            isReturn = true;
+        } 
     }
 }

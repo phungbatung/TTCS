@@ -24,7 +24,7 @@ public class PlayerWallSlideState : PlayerState
         player.SetVelocity(0, -.5f);
         if (player.IsGrounded())
             stateMachine.ChangeState(player.idleState);
-        if (xInput*player.facingDir == -1||!player.IsWallDetected())
+        if (xInput * player.facingDir == -1 || !player.IsWallDetected())
             stateMachine.ChangeState(player.airState);
         if (Input.GetKeyDown(KeyCode.Space))
             stateMachine.ChangeState(player.wallJump);

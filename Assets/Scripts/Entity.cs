@@ -4,25 +4,31 @@ using UnityEngine;
 
 public class Entity : MonoBehaviour
 {
+    [Header("Components info")]
     public Animator anim;
     public Rigidbody2D rb;
     public EntityFX entityFX;
 
+    [Header("Movement info")]
     public float moveSpeed;
     public bool isFacingRight;
     public int facingDir;
-
     public bool isBusy;
+    public float jumpForce;
 
+    [Header("Ground check")]
     [SerializeField] protected Transform groundCheckPoint;
     [SerializeField] protected float groundCheckDistance;
     [SerializeField] protected LayerMask groundLayer;
 
+    [Header("Wall check")]
     [SerializeField] protected Transform wallCheckPoint;
     [SerializeField] protected float walllCheckDistance;
 
+    [Header("Attack info")]
     public Transform attackPoint;
     public float attackRadius;
+    public Vector2[] attackMovement;
 
     protected virtual void Awake()
     {

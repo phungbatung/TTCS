@@ -5,20 +5,15 @@ using UnityEngine;
 
 public class Player : Entity
 {
-    
-    
-    public float jumpForce;
 
+    [Header("Dash info")]
     public float dashSpeed;
     public float dashDuration;
     public int dashDir;
     public float dashCooldown;
     [HideInInspector]public float lastTimeDash;
 
-    public Vector2[] attackMovement;
-    
-    
-
+    #region PlayerState
     private PlayerStateMachine stateMachine;
     public PlayerIdleState idleState { get; private set; }
     public PlayerMoveState moveState { get; private set; }
@@ -28,6 +23,7 @@ public class Player : Entity
     public PlayerWallJumpState wallJump { get; private set; }
     public PlayerDashState dashState { get; private set; }
     public PlayerPrimaryAttack primaryAttack { get; private set; }
+    #endregion
 
     protected override void Awake()
     {
@@ -45,7 +41,6 @@ public class Player : Entity
         wallJump = new PlayerWallJumpState(stateMachine, this, "Jump");
         dashState = new PlayerDashState(stateMachine, this, "Dash");
         primaryAttack = new PlayerPrimaryAttack(stateMachine, this, "Attack");
-
         stateMachine.InitialState(idleState);
     }
 
@@ -60,6 +55,4 @@ public class Player : Entity
     {
         stateMachine.currentState.TriggerCalled();
     }
-
-    
 }
