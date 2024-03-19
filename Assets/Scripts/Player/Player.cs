@@ -23,6 +23,7 @@ public class Player : Entity
     public PlayerWallJumpState wallJump { get; private set; }
     public PlayerDashState dashState { get; private set; }
     public PlayerPrimaryAttack primaryAttack { get; private set; }
+    public PlayerAimSword aimSword { get; private set; }
     #endregion
 
     protected override void Awake()
@@ -41,6 +42,8 @@ public class Player : Entity
         wallJump = new PlayerWallJumpState(stateMachine, this, "Jump");
         dashState = new PlayerDashState(stateMachine, this, "Dash");
         primaryAttack = new PlayerPrimaryAttack(stateMachine, this, "Attack");
+        aimSword = new PlayerAimSword(stateMachine, this, "Aim");
+
         stateMachine.InitialState(idleState);
     }
 

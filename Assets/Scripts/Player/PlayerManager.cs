@@ -6,12 +6,13 @@ public class PlayerManager : MonoBehaviour
 {
     public static PlayerManager instance;
     public Player player;
-    private void Start()
+    private void Awake()
     {
         if (instance != null)
             Destroy(this.gameObject);
         else
             instance = this;
     }
+    
 
 }
