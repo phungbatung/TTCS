@@ -2,8 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
 public class ThrowSwordSkill : Skill
 {
+
     [SerializeField] private GameObject swordPrefab;
     [SerializeField] private GameObject dotsPrefab;
     [SerializeField] private Transform dotsParent;
@@ -14,11 +17,22 @@ public class ThrowSwordSkill : Skill
     
     private Vector2 finalDirection;
     [SerializeField] private Vector2 launchDir;
-    [SerializeField] private float gravity = 1;
+    private float gravity;
+
+    public bool isBoomarang = false;
+    [Header("Normal mode")]
+    [SerializeField] private float normalGravity;
+
+    [Header("Boomerang mode")]
+    [SerializeField] private float boomarangGravity;
+    [SerializeField] private float moveSpeed;
+    [SerializeField] private float maxDistance;
+    
     protected override void Start()
     {
         base.Start();
         GenerateDots();
+        gravity = normalGravity;
     }
 
     protected override void Update()
@@ -27,10 +41,21 @@ public class ThrowSwordSkill : Skill
         if (Input.GetKeyUp(KeyCode.Mouse1))
             finalDirection = new Vector2(AimDirection().normalized.x * launchDir.x, AimDirection().normalized.y * launchDir.y);
     }
+
+    public void SetBomerangMode() => isBoomarang = true;
+    public void SetNormalMode() => isBoomarang = false;
     public void CreateSword(Transform _transform)
     {
         GameObject newSword = Instantiate(swordPrefab);
-        newSword.GetComponent<SwordController>().SetUpSword(_transform, finalDirection, gravity);
+
+        SwordController swordScript = newSword.GetComponent<SwordController>();
+        if (isBoomarang) gravity = boomarangGravity;
+        else gravity = normalGravity;
+        swordScript.SetUpSword(_transform, gravity, isBoomarang);
+        if (isBoomarang)
+            swordScript.SetUpBoomarang(player.facingDir, moveSpeed, maxDistance);
+        else
+            swordScript.SetUpNormal(finalDirection);
         
         SwitchActiveDots(false);
     }
@@ -69,6 +94,8 @@ public class ThrowSwordSkill : Skill
     }
     public void SwitchActiveDots(bool _active)
     {
+        if(isBoomarang)
+            _active = false;
         for(int i=0; i<numberOfDots; i++)
             listOfDots[i].SetActive(_active);
     }

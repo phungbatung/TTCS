@@ -29,7 +29,15 @@ public class PlayerGroundedState : PlayerState
         if (!player.IsGrounded())
             stateMachine.ChangeState(player.airState);
         if (Input.GetKeyDown(KeyCode.Mouse1))
+        {
+            SkillManager.instance.throwSwordSkill.SetNormalMode();
             stateMachine.ChangeState(player.aimSword);
+        }
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            SkillManager.instance.throwSwordSkill.SetBomerangMode();
+            stateMachine.ChangeState(player.aimSword);
+        }
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             stateMachine.ChangeState(player.primaryAttack);

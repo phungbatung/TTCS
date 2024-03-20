@@ -201,8 +201,12 @@ MonoBehaviour:
   dotsParent: {fileID: 198603236}
   numberOfDots: 20
   spaceBetweenDots: 0.08
-  launchDir: {x: 50, y: 20}
-  gravity: 3
+  launchDir: {x: 40, y: 20}
+  isBoomarang: 0
+  normalGravity: 3
+  boomarangGravity: 0
+  moveSpeed: 20
+  maxDistance: 10
 --- !u!1 &194339281
 GameObject:
   m_ObjectHideFlags: 0
@@ -355,7 +359,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 257558970}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.61, y: -1.91, z: 0}
+  m_LocalPosition: {x: -39.2, y: -2.9, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -704,7 +708,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.61, y: 1.3299998, z: -10}
+  m_LocalPosition: {x: -39.2, y: 0.33999968, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1820,7 +1824,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1934202914}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.61, y: 1.3299998, z: -10}
+  m_LocalPosition: {x: -39.2, y: 0.33999968, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1844,7 +1848,7 @@ GameObject:
   - component: {fileID: 1935557154}
   m_Layer: 3
   m_Name: Ground
-  m_TagString: Untagged
+  m_TagString: ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
