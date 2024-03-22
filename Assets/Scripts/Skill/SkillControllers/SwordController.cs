@@ -14,6 +14,7 @@ public class SwordController : MonoBehaviour
 
     [Header("Normal mode info")]
     private Vector2 _direction;
+    private float destroyTimer;
 
     [Header("Boomarang mode info")]
     private int moveDir;
@@ -31,6 +32,7 @@ public class SwordController : MonoBehaviour
     private void Start()
     {
         player = PlayerManager.instance.player;
+        destroyTimer = 2.5f;
     }
     public void SetUpNormal(Vector2 _direction) => rb.velocity = _direction;
     public void SetUpBoomarang(int _moveDir, float _moveSpeed, float _maxDistance)
@@ -72,18 +74,28 @@ public class SwordController : MonoBehaviour
             }
         }
         else
+        {
+            destroyTimer -= Time.deltaTime;
+            if (destroyTimer <= 0)
+                Destroy(gameObject);
             if (rb.velocity != Vector2.zero)
-            transform.right = rb.velocity;
+                transform.right = rb.velocity;
+        }
 
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        collision.GetComponent<Enemy>()?.Damaged();
+        Enemy enemy = collision.GetComponent<Enemy>();
+        if (enemy != null)
+            enemy.Damaged();
         if (isBoomarang)
         {
-            /*if (collision.gameObject.CompareTag("ground"))
-                isReturning=true;*/
+            if (enemy == null)
+            {
+                isReturning = true;
+                rb.velocity = Vector2.zero;
+            }
             return;
         }
         box.enabled = false;

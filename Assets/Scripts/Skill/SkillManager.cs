@@ -7,6 +7,7 @@ public class SkillManager : MonoBehaviour
     public static SkillManager instance;
     public CloneSkill cloneSkill;
     public ThrowSwordSkill throwSwordSkill;
+    public RageModeSkill rageModeSkill;
     void Awake()
     {
         if (instance != null)
@@ -20,5 +21,6 @@ public class SkillManager : MonoBehaviour
     {
         cloneSkill = GetComponent<CloneSkill>();
         throwSwordSkill = GetComponent<ThrowSwordSkill>();
+        rageModeSkill = GetComponent<RageModeSkill>();
     }
 }

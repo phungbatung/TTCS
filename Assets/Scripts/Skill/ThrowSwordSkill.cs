@@ -89,7 +89,7 @@ public class ThrowSwordSkill : Skill
     private Vector2 dotsPosition(float t)
     {
         Vector2 position=(Vector2)player.transform.position 
-            + new Vector2(AimDirection().normalized.x*launchDir.x, AimDirection().normalized.y*launchDir.y)*t + 0.5f*Physics2D.gravity*gravity*t*t;
+            + new Vector2(AimDirection().normalized.x*launchDir.x, AimDirection().normalized.y*launchDir.y)*t + 0.5f*Physics2D.gravity* normalGravity * t*t;
         return position;
     }
     public void SwitchActiveDots(bool _active)

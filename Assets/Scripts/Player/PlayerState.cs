@@ -34,6 +34,8 @@ public class PlayerState
         stateTimer -= Time.deltaTime;
         if (player.isBusy)
             player.ZeroVelocity();
+        if (Input.GetKeyDown(KeyCode.G))
+            SkillManager.instance.rageModeSkill.SetUpRage();
         CheckForDash();
     }
     protected virtual void CheckForDash()
