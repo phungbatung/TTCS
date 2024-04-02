@@ -16,7 +16,7 @@ public class EnemyState
     }
     public virtual void Enter()
     {
-
+        Debug.Log("Enter");
     }
     public virtual void Exit()
     {

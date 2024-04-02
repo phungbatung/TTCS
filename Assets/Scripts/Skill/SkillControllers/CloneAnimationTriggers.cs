@@ -21,7 +21,7 @@ public class CloneAnimationTriggers : MonoBehaviour
         {
             if (hit.GetComponent<Enemy>() != null)
             {
-                hit.GetComponent<Enemy>().Damaged();
+                hit.GetComponent<Enemy>().DamagedEffect();
             }
         }
     }

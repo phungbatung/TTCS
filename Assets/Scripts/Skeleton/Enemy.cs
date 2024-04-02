@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Enemy : Entity
 {
-    protected EnemyStateMachine stateMachine;
+    public EnemyStateMachine stateMachine { get; private set; }
+    public bool wasDead = false;
     protected override void Awake()
     {
         base.Awake();
@@ -20,5 +21,9 @@ public class Enemy : Entity
     {
         base.Update();
         stateMachine.currentState.Update();
+    }
+    public virtual void Destroy()
+    {
+        Destroy(gameObject);
     }
 }

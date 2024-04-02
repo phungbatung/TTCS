@@ -8,6 +8,8 @@ public class Entity : MonoBehaviour
     public Animator anim;
     public Rigidbody2D rb;
     public EntityFX entityFX;
+    public CharacterStats stats;
+    public CapsuleCollider2D cd;
 
     [Header("Movement info")]
     public float moveSpeed;
@@ -15,6 +17,7 @@ public class Entity : MonoBehaviour
     public int facingDir;
     public bool isBusy;
     public float jumpForce;
+    public Vector2 hitImpact;
 
     [Header("Ground check")]
     [SerializeField] protected Transform groundCheckPoint;
@@ -30,11 +33,15 @@ public class Entity : MonoBehaviour
     public float attackRadius;
     public Vector2[] attackMovement;
 
+    
+
     protected virtual void Awake()
     {
         anim = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody2D>();
         entityFX = GetComponent<EntityFX>();
+        stats = GetComponent<CharacterStats>();
+        cd = GetComponent<CapsuleCollider2D>();
     }
     protected virtual void Start()
     {
@@ -84,11 +91,10 @@ public class Entity : MonoBehaviour
         Gizmos.DrawWireSphere(attackPoint.position, attackRadius);
     }
 
-    public virtual void Damaged()
+    public virtual void DamagedEffect()
     {
-        Debug.Log($"{gameObject.name} is Damaged");
         entityFX.StartCoroutine("FlashFX");
-
+        rb.velocity = new Vector2(-facingDir * hitImpact.x, hitImpact.y);
     }
 
 

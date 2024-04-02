@@ -14,7 +14,7 @@ public class Player : Entity
     [HideInInspector]public float lastTimeDash;
 
     #region PlayerState
-    private PlayerStateMachine stateMachine;
+    public  PlayerStateMachine stateMachine { get; private set; }
     public PlayerIdleState idleState { get; private set; }
     public PlayerMoveState moveState { get; private set; }
     public PlayerJumpState jumpState { get; private set; }
@@ -24,6 +24,7 @@ public class Player : Entity
     public PlayerDashState dashState { get; private set; }
     public PlayerPrimaryAttack primaryAttack { get; private set; }
     public PlayerAimSword aimSword { get; private set; }
+    public PlayerDeadState deadState { get; private set; }
     #endregion
 
     protected override void Awake()
@@ -43,6 +44,7 @@ public class Player : Entity
         dashState = new PlayerDashState(stateMachine, this, "Dash");
         primaryAttack = new PlayerPrimaryAttack(stateMachine, this, "Attack");
         aimSword = new PlayerAimSword(stateMachine, this, "Aim");
+        deadState = new PlayerDeadState(stateMachine, this, "Dead");
 
         stateMachine.InitialState(idleState);
     }

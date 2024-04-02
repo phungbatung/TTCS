@@ -88,7 +88,7 @@ public class SwordController : MonoBehaviour
     {
         Enemy enemy = collision.GetComponent<Enemy>();
         if (enemy != null)
-            enemy.Damaged();
+            enemy.DamagedEffect();
         if (isBoomarang)
         {
             if (enemy == null)
