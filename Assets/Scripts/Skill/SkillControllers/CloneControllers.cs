@@ -22,7 +22,7 @@ public class CloneControllers : MonoBehaviour
     {
         sr.color = new Color(1, 1, 1, sr.color.a - invisibleSpeed * Time.deltaTime);
         if (sr.color.a <= 0)
-            Destroy(this.gameObject);
+            this.gameObject.Despawn();
     }
     public void SetUpClone(Transform _transform, int _facingDir)
     {

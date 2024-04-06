@@ -46,7 +46,7 @@ public class ThrowSwordSkill : Skill
     public void SetNormalMode() => isBoomarang = false;
     public void CreateSword(Transform _transform)
     {
-        GameObject newSword = Instantiate(swordPrefab);
+        GameObject newSword = swordPrefab.Spawn();
 
         SwordController swordScript = newSword.GetComponent<SwordController>();
         if (isBoomarang) gravity = boomarangGravity;

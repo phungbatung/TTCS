@@ -32,7 +32,6 @@ public class SwordController : MonoBehaviour
     private void Start()
     {
         player = PlayerManager.instance.player;
-        destroyTimer = 2.5f;
     }
     public void SetUpNormal(Vector2 _direction) => rb.velocity = _direction;
     public void SetUpBoomarang(int _moveDir, float _moveSpeed, float _maxDistance)
@@ -56,32 +55,38 @@ public class SwordController : MonoBehaviour
     private void Update()
     {
         if (isBoomarang)
+            BoomerangLogic();
+        else
+            NormalLogic();
+
+    }
+
+    private void NormalLogic()
+    {
+        destroyTimer -= Time.deltaTime;
+        if (destroyTimer <= 0)
+            gameObject.Despawn();
+        if (rb.velocity != Vector2.zero)
+            transform.right = rb.velocity;
+    }
+
+    private void BoomerangLogic()
+    {
+        if (isReturning)
         {
-            if (isReturning)
-            {
-                transform.position = Vector2.MoveTowards(transform.position, player.transform.position, moveSpeed * Time.deltaTime);
-                if (Vector2.Distance(transform.position, player.transform.position) < .5f)
-                    Destroy(gameObject);
-            }
-            else
-            {
-                rb.velocity = new Vector2(moveDir * moveSpeed, 0);
-                if (Vector2.Distance(transform.position, startPosition) >= maxDistance)
-                {
-                    isReturning = true;
-                    rb.velocity = Vector2.zero;
-                }
-            }
+            transform.position = Vector2.MoveTowards(transform.position, player.transform.position, moveSpeed * Time.deltaTime);
+            if (Vector2.Distance(transform.position, player.transform.position) < .5f)
+                gameObject.Despawn();
         }
         else
         {
-            destroyTimer -= Time.deltaTime;
-            if (destroyTimer <= 0)
-                Destroy(gameObject);
-            if (rb.velocity != Vector2.zero)
-                transform.right = rb.velocity;
+            rb.velocity = new Vector2(moveDir * moveSpeed, 0);
+            if (Vector2.Distance(transform.position, startPosition) >= maxDistance)
+            {
+                isReturning = true;
+                rb.velocity = Vector2.zero;
+            }
         }
-
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -102,5 +107,16 @@ public class SwordController : MonoBehaviour
         rb.isKinematic = true;
         rb.constraints = RigidbodyConstraints2D.FreezeAll;
         transform.parent = collision.transform;
+        destroyTimer = 2.5f;
+    }
+    public void OnSpawn()
+    {
+        destroyTimer = Mathf.Infinity;
+    }
+    public void OnPreDisable()
+    {
+        isReturning = false;
+        rb.bodyType = RigidbodyType2D.Dynamic;
+        rb.constraints = RigidbodyConstraints2D.None;
     }
 }

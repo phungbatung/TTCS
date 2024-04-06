@@ -6,6 +6,7 @@ public class GhostController : MonoBehaviour
 {
     [SerializeField]private SpriteRenderer sr;
     private float invisibleSpeed;
+    private int facingDir = 1;
     private void Start()
     {
     }
@@ -13,21 +14,29 @@ public class GhostController : MonoBehaviour
     {
         sr.color = new Color(sr.color.r, sr.color.g, sr.color.b, sr.color.a - invisibleSpeed * Time.deltaTime);
         if (sr.color.a <= 0)
-            Destroy(gameObject);
+            this.gameObject.Despawn();
     }
 
-    public void SetUpGhost(Transform _transform, Sprite _sprite, Color _color, float _invisibleSpeed, int facingDir)
+    public void SetUpGhost(Transform _transform, Sprite _sprite, Color _color, float _invisibleSpeed, int _facingDir)
     {
         transform.position = _transform.position;
         sr.sprite = _sprite;
         sr.color = _color;
         invisibleSpeed = _invisibleSpeed;
-        if (facingDir < 0)
+        if (facingDir * _facingDir < 0)
             Flip();
     }
     private void Flip()
     {
         transform.Rotate(0, 180, 0);
+        facingDir *= -1;
     }
+    /*public void OnSpawn()
+    {
 
+    }
+    public void OnPreDisable()
+    {
+
+    }*/
 }

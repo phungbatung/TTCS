@@ -64,7 +64,7 @@ public class RageModeSkill : Skill
     
     private void CreateGhost()
     {
-        GameObject ghost = Instantiate(ghostPrefab);
+        GameObject ghost = ghostPrefab.Spawn();
         GhostController ghostScripts = ghost.GetComponent<GhostController>();
         ghostScripts.SetUpGhost(player.transform, sr.sprite, rageColor, invisibleSpeed, player.facingDir);
     }

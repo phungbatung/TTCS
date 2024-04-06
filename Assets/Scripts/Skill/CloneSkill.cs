@@ -8,7 +8,7 @@ public class CloneSkill : Skill
 
     public void CreateClone(Transform _transform, int _facingDir)
     {
-        GameObject newClone = Instantiate(clonePrefab);
+        GameObject newClone = clonePrefab.Spawn();
         newClone.GetComponent<CloneControllers>().SetUpClone(_transform, _facingDir);
     }
 }
