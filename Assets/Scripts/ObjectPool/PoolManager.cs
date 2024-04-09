@@ -18,10 +18,8 @@ public class PoolManager : MonoBehaviour
     {
         if(!currentPools.ContainsKey(prefab))
         {
-            Debug.Log("Debug: Spawn 1");
             return Instantiate(prefab);
         }
-        Debug.Log("Debug: Spawn 2");
         return currentPools[prefab].Spawn();
     }
     public static void Despawn(GameObject obj)

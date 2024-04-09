@@ -42,8 +42,7 @@ public class Pool : MonoBehaviour
     }
 
     public void DeSpawn(GameObject obj)
-    {
-        //BUG RIGHT HERE: chua despawn duoc =)) 
+    { 
 
         int indexInstance = aliveInstances.FindIndex(o => obj == o);
         if (indexInstance == -1)

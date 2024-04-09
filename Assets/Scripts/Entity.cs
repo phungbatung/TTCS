@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -33,7 +34,7 @@ public class Entity : MonoBehaviour
     public float attackRadius;
     public Vector2[] attackMovement;
 
-    
+    public System.Action onFlipped;
 
     protected virtual void Awake()
     {
@@ -59,6 +60,9 @@ public class Entity : MonoBehaviour
         transform.Rotate(0, 180, 0);
         isFacingRight = !isFacingRight;
         facingDir = -1 * facingDir;
+
+        if (onFlipped != null) 
+            onFlipped();
     }
 
     protected virtual void FlipController(float x)

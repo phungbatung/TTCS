@@ -7,14 +7,15 @@ public class RageModeSkill : Skill
     [SerializeField]private GameObject ghostPrefab;
     
     private Color baseColor;
-    [SerializeField]private Color rageColor;
-    public SpriteRenderer sr;
+    [SerializeField] private Color rageColor;
+    private SpriteRenderer sr;
 
 
     private float rageTimer;
     [SerializeField] private float rageDuration=0;
     [SerializeField] private float invisibleSpeed;
     [SerializeField]private float spawnRate;
+    [SerializeField] private float damageScale;
     private float spawnTimer=0;
     private float speed;
     private float baseSpeed;
@@ -41,6 +42,7 @@ public class RageModeSkill : Skill
     {
         rageTimer = rageDuration;
         sr.color = rageColor;
+        player.stats.SetDamageScale(damageScale);
     }
     public void RageMode()
     {
@@ -60,6 +62,7 @@ public class RageModeSkill : Skill
     public void SetNormalMode()
     {
         sr.color = baseColor;
+        player.stats.SetDamageScale(-damageScale);
     }
     
     private void CreateGhost()

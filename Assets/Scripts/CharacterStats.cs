@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class CharacterStats : MonoBehaviour
@@ -21,8 +22,10 @@ public class CharacterStats : MonoBehaviour
     
 
 
-    [SerializeField]private int currentHealth;
+    public int currentHealth;
+    private float damageScale = 1;
 
+    public Action onHealthChange;
     protected virtual void Start()
     {
         currentHealth = maxHealth.getValue();
@@ -33,6 +36,8 @@ public class CharacterStats : MonoBehaviour
     {
 
         currentHealth -= _damage;
+        if (onHealthChange!=null)
+            onHealthChange();
         if (currentHealth <= 0) 
         {
             currentHealth = 0;
@@ -45,7 +50,7 @@ public class CharacterStats : MonoBehaviour
             return;
             
 
-        int totalDamage = damage.getValue()+strength.getValue();
+        int totalDamage = Mathf.RoundToInt((damage.getValue()+strength.getValue())*damageScale);
         if (CanCrit())
             totalDamage = CriticalDamage(totalDamage);
         totalDamage -= armor.getValue();
@@ -61,7 +66,7 @@ public class CharacterStats : MonoBehaviour
     private bool TargetCanAvoidAttack(CharacterStats _target)
     {
         int totalEvasion = _target.evasion.getValue() + _target.agility.getValue();
-        if (Random.Range(0, 100) < totalEvasion)
+        if (UnityEngine.Random.Range(0, 100) < totalEvasion)
         {
             Debug.Log("ATTACK AVOIDED");
             return true;
@@ -71,7 +76,7 @@ public class CharacterStats : MonoBehaviour
     private bool CanCrit()
     {
         int totalCrit=critChance.getValue() + agility.getValue();
-        if (Random.Range(0, 100) < totalCrit)
+        if (UnityEngine.Random.Range(0, 100) < totalCrit)
             return true;
         return false;
     }
@@ -82,4 +87,13 @@ public class CharacterStats : MonoBehaviour
         float finalDamage=_damage*totalCritPower;
         return Mathf.RoundToInt(finalDamage);
     }
+    public void SetDamageScale(float _scale)
+    {
+        damageScale += _scale;
+    }
+    public float GetMaxHealth()
+    {
+        return (float)maxHealth.getValue() + vitality.getValue()*5;
+    }
+        
 }
