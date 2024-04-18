@@ -18,6 +18,7 @@ public class Entity : MonoBehaviour
     public int facingDir;
     public bool isBusy;
     public float jumpForce;
+    public bool canDoubleJump;
     public Vector2 hitImpact;
 
     [Header("Ground check")]

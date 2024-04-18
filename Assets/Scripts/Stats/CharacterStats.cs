@@ -6,19 +6,18 @@ public class CharacterStats : MonoBehaviour
     [Header("Major stats")]
     public Stat strength; // 1 point increase damage by 1 and crit power by 1%
     public Stat agility;  // 1 point increase evasion by 1% and crit chance by 1%
-    public Stat intelligence; // 1 point increase magic damage by 1 and magic registance by 3
     public Stat vitality; // 1 point increase health by 3 or 5 points
 
     [Header("Offensive stats")]
-    public Stat damage;
-    public Stat critChance;
-    public Stat critPower;
+    public Stat damage; // Weapon
+    public Stat critChance; // Gaunlets
+    public Stat critPower; // Helmet
 
 
     [Header("Defensive stats")]
-    public Stat maxHealth;
-    public Stat armor;
-    public Stat evasion;
+    public Stat maxHealth; // Pants
+    public Stat armor; // Chestplate
+    public Stat evasion; // Boots
     
 
 

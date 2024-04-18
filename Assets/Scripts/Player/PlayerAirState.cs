@@ -26,5 +26,10 @@ public class PlayerAirState : PlayerState
             stateMachine.ChangeState(player.idleState);
         if (player.IsWallDetected())
             stateMachine.ChangeState(player.wallSlide);
+        if (Input.GetKeyDown(KeyCode.Space) && player.canDoubleJump)
+        {
+            stateMachine.ChangeState(player.jumpState);
+            player.canDoubleJump = false;
+        }
     }
 }

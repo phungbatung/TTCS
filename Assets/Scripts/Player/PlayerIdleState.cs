@@ -12,6 +12,7 @@ public class PlayerIdleState : PlayerGroundedState
     {
         base.Enter();
         player.ZeroVelocity();
+        player.canDoubleJump = true;
     }
 
     public override void Exit()

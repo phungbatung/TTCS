@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class RageModeSkill : Skill
 {
+
+
     [SerializeField]private GameObject ghostPrefab;
-    
     private Color baseColor;
     [SerializeField] private Color rageColor;
     private SpriteRenderer sr;
@@ -15,11 +16,12 @@ public class RageModeSkill : Skill
     [SerializeField] private float rageDuration=0;
     [SerializeField] private float invisibleSpeed;
     [SerializeField]private float spawnRate;
-    [SerializeField] private float damageScale;
     private float spawnTimer=0;
     private float speed;
     private float baseSpeed;
 
+    [SerializeField] private float damageScale;
+    [SerializeField] private float moveSpeedUp;
 
     protected override void Start()
     {
@@ -43,6 +45,7 @@ public class RageModeSkill : Skill
         rageTimer = rageDuration;
         sr.color = rageColor;
         player.stats.SetDamageScale(damageScale);
+        player.IncreaseSpeedBy(moveSpeedUp);
     }
     public void RageMode()
     {
@@ -63,6 +66,7 @@ public class RageModeSkill : Skill
     {
         sr.color = baseColor;
         player.stats.SetDamageScale(-damageScale);
+        player.DecreaseSpeedBy(moveSpeedUp);
     }
     
     private void CreateGhost()

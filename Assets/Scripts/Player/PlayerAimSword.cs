@@ -15,6 +15,7 @@ public class PlayerAimSword : PlayerState
         base.Enter();
         SkillManager.instance.throwSwordSkill.SwitchActiveDots(true);
         boomarangMode = SkillManager.instance.throwSwordSkill.isBoomarang;
+        player.ZeroVelocity();
     }
     private Vector2 mousePosition;
     public override void Exit()
@@ -22,6 +23,7 @@ public class PlayerAimSword : PlayerState
         base.Exit();
         player.anim.SetBool("Throw", false);
         isTrigger = false;
+        player.StartCoroutine("BusyFor", .1f);
     }
 
     public override void Update()

@@ -23,10 +23,15 @@ public class PlayerWallJumpState : PlayerState
 
     public override void Update()
     {
+        base.Update();
         if (stateTimer < 0)
             player.SetVelocity(xInput * player.moveSpeed, player.rb.velocity.y);
-        base.Update();
         if (player.rb.velocity.y <= 0)
             stateMachine.ChangeState(player.airState);
+        if (Input.GetKeyDown(KeyCode.Space) && player.canDoubleJump)
+        {
+            stateMachine.ChangeState(player.jumpState);
+            player.canDoubleJump = false;
+        }
     }
 }

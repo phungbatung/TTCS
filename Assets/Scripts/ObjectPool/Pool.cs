@@ -47,11 +47,9 @@ public class Pool : MonoBehaviour
         int indexInstance = aliveInstances.FindIndex(o => obj == o);
         if (indexInstance == -1)
         {
-            Debug.Log("Debug: Despawn 1");
             Destroy(obj);
             return;
         }
-        Debug.Log("Debug: Despawn 2");
         obj.SendMessage("OnPreDisable", SendMessageOptions.DontRequireReceiver);
         obj.SetActive(false);
         obj.transform.SetParent(transform);

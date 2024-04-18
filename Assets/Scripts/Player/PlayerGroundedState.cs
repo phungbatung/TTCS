@@ -32,11 +32,13 @@ public class PlayerGroundedState : PlayerState
         {
             SkillManager.instance.throwSwordSkill.SetNormalMode();
             stateMachine.ChangeState(player.aimSword);
+            isReturn = true;
         }
         if (Input.GetKeyDown(KeyCode.F))
         {
             SkillManager.instance.throwSwordSkill.SetBomerangMode();
             stateMachine.ChangeState(player.aimSword);
+            isReturn = true;
         }
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
