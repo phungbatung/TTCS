@@ -8,7 +8,6 @@ public class Inventory : MonoBehaviour
 {
     public static Inventory instance;
 
-
     public InventoryItem[] inventoryItems;
     public Dictionary<ItemData, InventoryItem> inventoryDictionary;
 
@@ -18,10 +17,10 @@ public class Inventory : MonoBehaviour
 
     [SerializeField] private Transform equipmentSlotParent;
     private EquipmentSlot_UI[] equipmentSlot;
-    public InventoryItem[] equipedItem;
+    public ItemData[] equipedItem;
 
 
-    private InventoryItem nullItem;
+    [HideInInspector]public InventoryItem nullItem;
     private void Awake()
     {
         if (instance != null)
@@ -33,31 +32,24 @@ public class Inventory : MonoBehaviour
     private void Start()
     {
         
-        inventoryItems = new InventoryItem[24];
-        equipedItem = new InventoryItem[6];
+        
+        equipedItem = new ItemData[6];
         inventoryDictionary = new Dictionary<ItemData, InventoryItem>();
 
         itemSlots = inventorySlotParent.GetComponentsInChildren<ItemSlot_UI>();
         equipmentSlot = equipmentSlotParent.GetComponentsInChildren<EquipmentSlot_UI>();
 
+        inventoryItems = new InventoryItem[itemSlots.Length];
         nullItem = new InventoryItem();
-        for (int i=0; i<24; i++)
-        {
-            inventoryItems[i] = nullItem;
-        }
-        for (int i=0; i<6; i++)
-        {
-            equipedItem[i] = nullItem;
-        }
     }
 
-    public void UpdateInventoryUI()
+    /*public void UpdateInventoryUI()
     {
         for (int i=0; i<inventoryItems.Length; i++)
         {
             itemSlots[i].UpdateItemSlot(inventoryItems[i]);
         }
-    }
+    }*/
     public void AddItem(ItemData _item)
     {
         if (inventoryDictionary.ContainsKey(_item))
@@ -69,14 +61,14 @@ public class Inventory : MonoBehaviour
             InventoryItem _newItem = new InventoryItem(_item);
             for (int i=0; i<inventoryItems.Length; i++)
             {
-                if (inventoryItems[i] == nullItem)
+                if (inventoryItems[i] == null)
                 {
                     inventoryItems[i] = _newItem;
                     inventoryDictionary[_item] = _newItem;
                     itemSlots[i].UpdateItemSlot(_newItem);
                     break;
                 }
-                if (i == inventoryItems.Length - 1)
+                if (i >= inventoryItems.Length - 1)
                 {
                     Debug.Log("Inventory is full!");
                 }
@@ -91,18 +83,18 @@ public class Inventory : MonoBehaviour
             int i = Array.FindIndex(inventoryItems, item => item == inventoryDictionary[_item]);
             if (inventoryDictionary[_item].stackSize <= 1)
             {
-                inventoryItems[i] = nullItem;
+                inventoryItems[i] = null;
                 inventoryDictionary.Remove(_item);
             }
             else
                 inventoryDictionary[_item].RemoveStack();
-            itemSlots[i].UpdateItemSlot(nullItem);
+            itemSlots[i].UpdateItemSlot(null);
         }
     }
 
-    public void Equip(InventoryItem _item)
+    public void Equip(ItemData _item)
     {
-        EquipmentData equipment = _item.itemData as EquipmentData;
+        EquipmentData equipment = _item as EquipmentData;
         int index=0;
         switch(equipment.equipmentType)
         {
@@ -126,21 +118,21 @@ public class Inventory : MonoBehaviour
                 break;
         }
         //Unequip if player carrying an equipment of the same type
-        if (equipedItem[index].itemData != null)
+        if (equipedItem[index] != null)
             Unequip(equipedItem[index]);
         //Equip new equipment
         equipedItem[index] = _item;
-        // Apply stats
+        //Apply stats
         equipment.AddModifier();
         //Update UI for new equipment
         equipmentSlot[index].UpdateItemSlot(_item);
         //Remove new equipment from inventory
-        RemoveItem(_item.itemData);
+        RemoveItem(_item);
     }
 
-    public void Unequip(InventoryItem _item)
+    public void Unequip(ItemData _item)
     {
-        EquipmentData equipment = _item.itemData as EquipmentData;
+        EquipmentData equipment = _item as EquipmentData;
         int index = 0;
         switch (equipment.equipmentType)
         {
@@ -163,13 +155,13 @@ public class Inventory : MonoBehaviour
                 index = 5;
                 break;
         }
-        AddItem(equipedItem[index].itemData);
+        AddItem(equipedItem[index]);
 
-        equipedItem[index] = nullItem;
+        equipedItem[index] = null;
 
         equipment.RemoveModifier();
 
-        equipmentSlot[index].UpdateItemSlot(nullItem);
+        equipmentSlot[index].UpdateItemSlot(null);
 
     }
 }

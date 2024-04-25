@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class ItemSlot_UI : MonoBehaviour, IPointerDownHandler
+public class ItemSlot_UI : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField]private Sprite originSprite;
     [SerializeField]private Image itemImage;
@@ -16,9 +16,9 @@ public class ItemSlot_UI : MonoBehaviour, IPointerDownHandler
     public void UpdateItemSlot(InventoryItem _item)
     {
 
-        item= _item;
-        if(item.itemData != null)
+        if(_item != null)
         {
+        item= _item;
             /*Debug.Log(gameObject.name + " not null");
             if (item.itemData.icon == null)
                 Debug.Log("icon Null");*/
@@ -30,15 +30,16 @@ public class ItemSlot_UI : MonoBehaviour, IPointerDownHandler
         }
         else
         {
-            Debug.Log("Debug");
+            item= null;
             itemImage.sprite=originSprite;
             amount.text = "";
         }
     }
 
-    public void OnPointerDown(PointerEventData eventData)
+   
+    public void OnPointerClick(PointerEventData eventData)
     {
-        if (item.itemData!=null && item.itemData.itemtype == ItemType.Equipment)
-            Inventory.instance.Equip(item);
+        if (item != null)
+            UI_ItemInfo.instance.SetItemInfo(item.itemData);
     }
 }

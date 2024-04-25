@@ -25,7 +25,7 @@ public class Inventory_UI : MonoBehaviour
     {
         isOpen = true;
         gameObject.SetActive(true);
-        Inventory.instance.UpdateInventoryUI();
+        /*Inventory.instance.UpdateInventoryUI();*/
     }
 
     public void Toggle()

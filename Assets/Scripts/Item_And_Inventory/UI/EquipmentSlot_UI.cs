@@ -10,15 +10,15 @@ public class EquipmentSlot_UI : MonoBehaviour, IPointerDownHandler
     [SerializeField] private Sprite originSprite;
     [SerializeField] private Image itemImage;
 
-    private InventoryItem item;
+    private ItemData item;
 
-    public void UpdateItemSlot(InventoryItem _item)
+    public void UpdateItemSlot(ItemData _item)
     {
 
         item = _item;
-        if (item.itemData != null)
+        if (item != null)
         {
-            itemImage.sprite = item.itemData.icon;
+            itemImage.sprite = item.icon;
         }
         else
         {
@@ -28,7 +28,7 @@ public class EquipmentSlot_UI : MonoBehaviour, IPointerDownHandler
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        if (item.itemData != null)
+        if (item != null)
             Inventory.instance.Unequip(item);
     }
 }

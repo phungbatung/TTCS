@@ -14,5 +14,10 @@ public class ItemData : ScriptableObject
     public ItemType itemtype;
     public Sprite icon;
     public string itemName;
+    public string itemDescription;
 
+    public virtual string Description()
+    {
+        return itemDescription;
+    }
 }

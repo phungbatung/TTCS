@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 
 public enum EquipmentType
@@ -58,5 +59,23 @@ public class EquipmentData : ItemData
         stats.maxHealth.removeModifier(maxHealth);
         stats.armor.removeModifier(armor);
         stats.evasion.removeModifier(evasion);
+    }
+
+    public override string Description()
+    {
+        string description = "";
+        if (strength != 0) description += $"Strength + {strength}/n";
+        if (agility != 0) description += $"Agility + {agility}/n";
+        if (vitality != 0) description += $"Vitality + {vitality}/n";
+        if (damage != 0) description += $"Damage + {damage}/n";
+        if (critChance != 0) description += $"Crit Chance + {critChance}%/n";
+        if (critPower != 0) description += $"Crit Power + {critPower}%/n";
+        if (maxHealth != 0) description += $"Max Health + {maxHealth}/n";
+        if (armor != 0) description += $"Armor + {armor}/n";
+        if (evasion != 0) description += $"Evasion + {evasion}/n";
+
+        description += base.Description();
+
+        return description;
     }
 }
