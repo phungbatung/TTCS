@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class EquipmentSlot_UI : MonoBehaviour, IPointerDownHandler
+public class UI_EquipmentSlot : MonoBehaviour, IPointerDownHandler
 {
     [SerializeField] private Sprite originSprite;
     [SerializeField] private Image itemImage;

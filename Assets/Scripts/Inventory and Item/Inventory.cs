@@ -13,10 +13,10 @@ public class Inventory : MonoBehaviour
 
 
     [SerializeField] private Transform inventorySlotParent;
-    private ItemSlot_UI[] itemSlots;
+    private UI_ItemSlot[] itemSlots;
 
     [SerializeField] private Transform equipmentSlotParent;
-    private EquipmentSlot_UI[] equipmentSlot;
+    private UI_EquipmentSlot[] equipmentSlot;
     public ItemData[] equipedItem;
 
 
@@ -36,8 +36,8 @@ public class Inventory : MonoBehaviour
         equipedItem = new ItemData[6];
         inventoryDictionary = new Dictionary<ItemData, InventoryItem>();
 
-        itemSlots = inventorySlotParent.GetComponentsInChildren<ItemSlot_UI>();
-        equipmentSlot = equipmentSlotParent.GetComponentsInChildren<EquipmentSlot_UI>();
+        itemSlots = inventorySlotParent.GetComponentsInChildren<UI_ItemSlot>();
+        equipmentSlot = equipmentSlotParent.GetComponentsInChildren<UI_EquipmentSlot>();
 
         inventoryItems = new InventoryItem[itemSlots.Length];
         nullItem = new InventoryItem();

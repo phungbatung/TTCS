@@ -4,7 +4,7 @@ using UnityEditor.Tilemaps;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HealthBar_UI : MonoBehaviour
+public class UI_HealthBar : MonoBehaviour
 {
     private Slider slider;
     private Entity entity;
@@ -23,7 +23,7 @@ public class HealthBar_UI : MonoBehaviour
 
     public void UpdateHealthBarUI()
     {
-        slider.maxValue = entity.stats.GetMaxHealth();
+        slider.maxValue = entity.stats.maxHealth.getValue();
         slider.value = entity.stats.currentHealth;
     }
     private void FlipUI()

@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
-public class Inventory_UI : MonoBehaviour
+public class UI_Menus : MonoBehaviour
 {
-    public static Inventory_UI instance;
+    public static UI_Menus instance;
     private bool isOpen = false;
     private void Awake()
     {
@@ -12,6 +13,7 @@ public class Inventory_UI : MonoBehaviour
             instance = this;
         else
             Destroy(instance);
+
         gameObject.SetActive(false);
     }
 
@@ -25,7 +27,7 @@ public class Inventory_UI : MonoBehaviour
     {
         isOpen = true;
         gameObject.SetActive(true);
-        /*Inventory.instance.UpdateInventoryUI();*/
+        SwitchTo(transform.GetChild(0).gameObject);
     }
 
     public void Toggle()
@@ -35,4 +37,14 @@ public class Inventory_UI : MonoBehaviour
         else
             Open();
     }
+
+    public void SwitchTo(GameObject _menu)
+    {
+        for (int i = 0; i<transform.childCount; i++)
+        {
+            transform.GetChild(i).gameObject.SetActive(false);
+        }
+        if (_menu!=null)
+            _menu.SetActive(true);
+    }    
 }

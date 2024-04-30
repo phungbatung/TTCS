@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class ItemSlot_UI : MonoBehaviour, IPointerClickHandler
+public class UI_ItemSlot : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField]private Sprite originSprite;
     [SerializeField]private Image itemImage;

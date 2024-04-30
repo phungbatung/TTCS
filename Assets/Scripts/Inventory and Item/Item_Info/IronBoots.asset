@@ -10,9 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: da3f66a281eb3564d8727d1e1f15200a, type: 3}
-  m_Name: IronPants
+  m_Name: IronBoots
   m_EditorClassIdentifier: 
   itemtype: 1
-  icon: {fileID: -791773602, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
-  itemName: Animal Skin Pants
-  equipmentType: 3
+  icon: {fileID: 922760870, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
+  itemName: Iron Boots
+  itemDescription: 
+  dropRate: 50
+  equipmentType: 4
+  damage: 0
+  critChance: 0
+  critPower: 0
+  maxHealth: 0
+  armor: 0
+  evasion: 0

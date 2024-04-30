@@ -15,6 +15,8 @@ public class ItemData : ScriptableObject
     public Sprite icon;
     public string itemName;
     public string itemDescription;
+    [Range(1, 100)]
+    public int dropRate;
 
     public virtual string Description()
     {

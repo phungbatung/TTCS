@@ -4,10 +4,11 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BtnInventory : BaseButton
+public class BtnCharacterPanel : BaseButton
 {
+    
     protected override void OnClick()
     {
-        Inventory_UI.instance.Toggle();
+        UI_Menus.instance.Toggle();
     }
 }

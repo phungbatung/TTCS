@@ -11,6 +11,7 @@ public class SkeletonDeadState : SkeletonState
     public override void Enter()
     {
         base.Enter();
+        enemy.GetComponent<ItemDrop>().Drop();
         stateTimer = 3;
         enemy.cd.enabled = false;
         enemy.rb.bodyType = RigidbodyType2D.Static;

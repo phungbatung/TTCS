@@ -3,10 +3,6 @@ using UnityEngine;
 
 public class CharacterStats : MonoBehaviour
 {
-    [Header("Major stats")]
-    public Stat strength; // 1 point increase damage by 1 and crit power by 1%
-    public Stat agility;  // 1 point increase evasion by 1% and crit chance by 1%
-    public Stat vitality; // 1 point increase health by 3 or 5 points
 
     [Header("Offensive stats")]
     public Stat damage; // Weapon
@@ -49,7 +45,7 @@ public class CharacterStats : MonoBehaviour
             return;
             
 
-        int totalDamage = Mathf.RoundToInt((damage.getValue()+strength.getValue())*damageScale);
+        int totalDamage = Mathf.RoundToInt((damage.getValue())*damageScale);
         if (CanCrit())
             totalDamage = CriticalDamage(totalDamage);
         totalDamage -= armor.getValue();
@@ -64,7 +60,7 @@ public class CharacterStats : MonoBehaviour
     }
     private bool TargetCanAvoidAttack(CharacterStats _target)
     {
-        int totalEvasion = _target.evasion.getValue() + _target.agility.getValue();
+        int totalEvasion = _target.evasion.getValue();
         if (UnityEngine.Random.Range(0, 100) < totalEvasion)
         {
             Debug.Log("ATTACK AVOIDED");
@@ -74,7 +70,7 @@ public class CharacterStats : MonoBehaviour
     }
     private bool CanCrit()
     {
-        int totalCrit=critChance.getValue() + agility.getValue();
+        int totalCrit=critChance.getValue();
         if (UnityEngine.Random.Range(0, 100) < totalCrit)
             return true;
         return false;
@@ -82,7 +78,7 @@ public class CharacterStats : MonoBehaviour
 
     private int CriticalDamage(int _damage)
     {
-        float totalCritPower = (critPower.getValue() + strength.getValue()) * .01f;
+        float totalCritPower = (critPower.getValue()) * .01f;
         float finalDamage=_damage*totalCritPower;
         return Mathf.RoundToInt(finalDamage);
     }
@@ -92,7 +88,16 @@ public class CharacterStats : MonoBehaviour
     }
     public float GetMaxHealth()
     {
-        return (float)maxHealth.getValue() + vitality.getValue()*5;
+        return (float)maxHealth.getValue();
+    }
+
+    public string GetOffensiveStats()
+    {
+        return $"{damage.getValue()}\n{critChance.getValue()}%\n{critPower.getValue()}%";
+    }
+    public string GetDeffensiveStats()
+    {
+        return $"{maxHealth.getValue()}\n{armor.getValue()}\n{evasion.getValue()}%";
     }
         
 }

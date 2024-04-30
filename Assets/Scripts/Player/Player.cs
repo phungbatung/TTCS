@@ -61,6 +61,14 @@ public class Player : Entity
         stateMachine.currentState.TriggerCalled();
     }
 
-    public void IncreaseSpeedBy(float _speed) => moveSpeed += _speed;
-    public void DecreaseSpeedBy(float _speed) => moveSpeed -= _speed;
+    public void IncreaseSpeedBy(float _speed)
+    {
+        moveSpeed += _speed;
+        UI_Stats.instance.UpdateStatsUI();
+    }
+    public void DecreaseSpeedBy(float _speed)
+    {
+        moveSpeed -= _speed;
+        UI_Stats.instance.UpdateStatsUI();
+    }
 }
