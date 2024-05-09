@@ -2,9 +2,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
+using UnityEditor;
 using UnityEngine;
+using static UnityEditor.Progress;
 
-public class Inventory : MonoBehaviour
+public class Inventory : MonoBehaviour, ISaveManager
 {
     public static Inventory instance;
 
@@ -19,8 +21,9 @@ public class Inventory : MonoBehaviour
     private UI_EquipmentSlot[] equipmentSlot;
     public ItemData[] equipedItem;
 
+    public List<InventoryItem> loadedItems;
+    public List<ItemData> loadedEquipment;
 
-    [HideInInspector]public InventoryItem nullItem;
     private void Awake()
     {
         if (instance != null)
@@ -40,21 +43,44 @@ public class Inventory : MonoBehaviour
         equipmentSlot = equipmentSlotParent.GetComponentsInChildren<UI_EquipmentSlot>();
 
         inventoryItems = new InventoryItem[itemSlots.Length];
-        nullItem = new InventoryItem();
+
+        AddStartingItems();
     }
 
-    /*public void UpdateInventoryUI()
+    private void AddStartingItems()
     {
-        for (int i=0; i<inventoryItems.Length; i++)
+        foreach (ItemData item in loadedEquipment)
         {
-            itemSlots[i].UpdateItemSlot(inventoryItems[i]);
+            Equip(item);
         }
+
+        if (loadedItems.Count > 0)
+        {
+            foreach (InventoryItem item in loadedItems)
+            {
+                for (int i = 0; i < item.stackSize; i++)
+                {
+                    AddItem(item.itemData);
+                }
+            }
+
+            return;
+        }
+    }
+
+    /*public void UpdateUI_Slot()
+    {
+        for (int i=0; i<itemSlots.Length; i++)
+            itemSlots[i].UpdateItemSlot(inventoryItems[i]);
+
     }*/
     public void AddItem(ItemData _item)
     {
         if (inventoryDictionary.ContainsKey(_item))
         {
+            int i = Array.FindIndex(inventoryItems, item => item == inventoryDictionary[_item]);
             inventoryDictionary[_item].AddStack();
+            itemSlots[i].UpdateItemSlot(inventoryDictionary[_item]);
         }
         else
         {
@@ -85,10 +111,13 @@ public class Inventory : MonoBehaviour
             {
                 inventoryItems[i] = null;
                 inventoryDictionary.Remove(_item);
+                itemSlots[i].UpdateItemSlot(null);
             }
             else
+            {
                 inventoryDictionary[_item].RemoveStack();
-            itemSlots[i].UpdateItemSlot(null);
+                itemSlots[i].UpdateItemSlot(inventoryDictionary[_item]);
+            }
         }
     }
 
@@ -163,5 +192,64 @@ public class Inventory : MonoBehaviour
 
         equipmentSlot[index].UpdateItemSlot(null);
 
+    }
+
+    public void LoadData(GameData _data)
+    {
+        foreach (KeyValuePair<string, int> pair in _data.inventory)
+        {
+            foreach (var item in GetItemDataBase())
+            {
+                if (item != null && item.itemId == pair.Key)
+                {
+                    InventoryItem itemToLoad = new InventoryItem(item);
+                    itemToLoad.stackSize = pair.Value;
+
+                    loadedItems.Add(itemToLoad);
+                }
+            }
+        }
+
+        foreach (string loadedItemId in _data.equipmentId)
+        {
+            foreach (var item in GetItemDataBase())
+            {
+                if (item != null && loadedItemId == item.itemId)
+                {
+                    loadedEquipment.Add(item);
+                }
+            }
+        }
+    }
+
+    public void SaveData(ref GameData _data)
+    {
+        _data.inventory.Clear();
+        foreach (KeyValuePair<ItemData, InventoryItem> pair in inventoryDictionary)
+        {
+            _data.inventory.Add(pair.Key.itemId, pair.Value.stackSize);
+
+        }
+        _data.equipmentId.Clear();
+        for (int i = 0; i < equipedItem.Length; i++)
+        {
+            if (equipedItem[i] != null)
+                _data.equipmentId.Add(equipedItem[i].itemId);
+        }
+    }
+
+    private List<ItemData> GetItemDataBase()
+    {
+        List<ItemData> itemDataBase = new List<ItemData>();
+        string[] assetNames = AssetDatabase.FindAssets("", new[] { "Assets/Data/Items" });
+
+        foreach (string SOName in assetNames)
+        {
+            var SOpath = AssetDatabase.GUIDToAssetPath(SOName);
+            var itemData = AssetDatabase.LoadAssetAtPath<ItemData>(SOpath);
+            itemDataBase.Add(itemData);
+        }
+
+        return itemDataBase;
     }
 }

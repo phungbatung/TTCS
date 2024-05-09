@@ -19,6 +19,10 @@ public class UI_Stats : MonoBehaviour
         else
             Destroy(gameObject);
         UpdateStatsUI();
+    }
+
+    private void Start()
+    {
         gameObject.SetActive(false);
     }
 

@@ -20,12 +20,12 @@ public class Stat
     public void addModifier(int modifier)
     {
         modifiers.Add(modifier);
-        UI_Stats.instance.UpdateStatsUI();
+        /*UI_Stats.instance.UpdateStatsUI();*/
     }
     public void removeModifier(int modifier) 
     { 
         modifiers.Remove(modifier);
-        UI_Stats.instance.UpdateStatsUI();
+        /*UI_Stats.instance.UpdateStatsUI();*/
     }
     public void SetDefaultValue(int _value)
     {
