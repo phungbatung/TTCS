@@ -11,6 +11,9 @@ public class PlayerDeadState : PlayerState
     public override void Enter()
     {
         base.Enter();
+        player.cd.enabled = false;
+        player.rb.constraints = RigidbodyConstraints2D.FreezeAll;
+        GameObject.Find("UI").GetComponent<UI>().StartCoroutine("Die");
     }
 
     public override void Exit()
@@ -21,6 +24,7 @@ public class PlayerDeadState : PlayerState
     public override void Update()
     {
         base.Update();
+        
 
     }
 }

@@ -64,11 +64,9 @@ public class Player : Entity
     public void IncreaseSpeedBy(float _speed)
     {
         moveSpeed += _speed;
-        UI_Stats.instance.UpdateStatsUI();
     }
     public void DecreaseSpeedBy(float _speed)
     {
         moveSpeed -= _speed;
-        UI_Stats.instance.UpdateStatsUI();
     }
 }

@@ -19,13 +19,14 @@ public class UI_Stats : MonoBehaviour
         else
             Destroy(gameObject);
         UpdateStatsUI();
-    }
-
-    private void Start()
-    {
         gameObject.SetActive(false);
     }
 
+
+    private void OnEnable()
+    {
+        UpdateStatsUI();
+    }
     public void UpdateStatsUI()
     {
         offensive.text = player.stats.GetOffensiveStats();
