@@ -6,7 +6,7 @@ public class CheckPoint : MonoBehaviour
 {
     private Animator anim;
     public int id;
-    private bool active = false;
+    /*private bool active = false;*/
 
     private void Awake()
     {

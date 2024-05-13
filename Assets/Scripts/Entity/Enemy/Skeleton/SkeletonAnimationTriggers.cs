@@ -9,7 +9,7 @@ public class SkeletonAnimationTriggers : MonoBehaviour
     {
         enemy = GetComponentInParent<Enemy_Skeleton>();
     }
-    public virtual void AnimationTriggerCalled()
+    private void AnimationTriggerCalled()
     {
         enemy.AnimationTriggerCalled();
     }
