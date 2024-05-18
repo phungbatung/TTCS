@@ -36,6 +36,7 @@ public class UI_Menus : MonoBehaviour
             Close();
         else
             Open();
+        GameController.instance.Pause(!isOpen);
     }
     public void SwitchTo(GameObject _menu)
     {

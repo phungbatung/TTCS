@@ -30,12 +30,7 @@ public class Inventory : MonoBehaviour, ISaveManager
             Destroy(gameObject);
         else
             instance = this;
-    }
 
-    private void Start()
-    {
-        
-        
         equipedItem = new ItemData[6];
         inventoryDictionary = new Dictionary<ItemData, InventoryItem>();
 
@@ -43,8 +38,6 @@ public class Inventory : MonoBehaviour, ISaveManager
         equipmentSlot = equipmentSlotParent.GetComponentsInChildren<UI_EquipmentSlot>();
 
         inventoryItems = new InventoryItem[itemSlots.Length];
-
-        AddStartingItems();
     }
 
     private void AddStartingItems()
@@ -220,6 +213,8 @@ public class Inventory : MonoBehaviour, ISaveManager
                 }
             }
         }
+
+        AddStartingItems();
     }
 
     public void SaveData(ref GameData _data)

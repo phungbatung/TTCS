@@ -22,6 +22,8 @@ public class Enemy : Entity
 
     protected override void Update()
     {
+        if ( Time.timeScale <= 0)
+            return;
         base.Update();
         stateMachine.currentState.Update();
     }
@@ -30,7 +32,7 @@ public class Enemy : Entity
         Destroy(gameObject);
     }
 
-    public RaycastHit2D PlayerDetected()
+    public virtual RaycastHit2D PlayerDetected()
     {
         return Physics2D.Raycast(playerCheck.position, Vector2.right, 2 * (transform.position.x - playerCheck.position.x), playerLayer);
     }

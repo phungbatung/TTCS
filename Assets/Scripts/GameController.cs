@@ -16,7 +16,16 @@ public class GameController : MonoBehaviour
     
     public void RestartScene()
     {
+        SaveManager.instance.SaveGame();
         Scene scene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(scene.name);
+    }
+
+    public void Pause(bool _pause)
+    {
+        if (_pause)
+            Time.timeScale = 1.0f;
+        else
+            Time.timeScale = 0f;
     }
 }

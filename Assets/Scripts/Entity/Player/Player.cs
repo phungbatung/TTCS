@@ -52,6 +52,8 @@ public class Player : Entity
     
     protected override void Update()
     {
+        if ( Time.timeScale <= 0)
+            return;
         stateMachine.currentState.Update();
     }
     

@@ -486,8 +486,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 42aafed324a398e4e8f4e26c4878acf9
-      internalID: 1604829012
+      spriteID: 310af9926e141284ead59790ead6b107
+      internalID: 1780122361
       vertices: []
       indices: 
       edges: []
@@ -507,8 +507,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8cab199f35d78af46959f4562160fff7
-      internalID: -731768953
+      spriteID: cfd90bc5d71616346aeea217e6b11e66
+      internalID: 1150733041
       vertices: []
       indices: 
       edges: []
@@ -528,8 +528,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: af20507f9883eb64f9a208780588f415
-      internalID: 1150939440
+      spriteID: 7fe21711508c0c04e8311f5a6eef9fda
+      internalID: 2046406974
       vertices: []
       indices: 
       edges: []
@@ -549,8 +549,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: daa5715bf025aef4c967589e393f385e
-      internalID: -1957350791
+      spriteID: 13bbda5b0b63b514c9676941d40f86c1
+      internalID: -1193222980
       vertices: []
       indices: 
       edges: []
@@ -570,8 +570,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5684752a145207a44a8ccd4b3fed466e
-      internalID: -88608505
+      spriteID: a8e55ca2c12c8264cb1a4c75a8f86b61
+      internalID: -1325488776
       vertices: []
       indices: 
       edges: []
@@ -595,12 +595,12 @@ TextureImporter:
       slime-Sheet_13: -1239544216
       slime-Sheet_14: -568243739
       slime-Sheet_15: 531545593
-      slime-Sheet_16: 1604829012
-      slime-Sheet_17: -731768953
-      slime-Sheet_18: 1150939440
-      slime-Sheet_19: -1957350791
+      slime-Sheet_16: 1780122361
+      slime-Sheet_17: 1150733041
+      slime-Sheet_18: 2046406974
+      slime-Sheet_19: -1193222980
       slime-Sheet_2: -127349151
-      slime-Sheet_20: -88608505
+      slime-Sheet_20: -1325488776
       slime-Sheet_3: 1872414475
       slime-Sheet_4: -1711412927
       slime-Sheet_5: -1350856743
