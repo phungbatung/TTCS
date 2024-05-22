@@ -18,6 +18,7 @@ public class Enemy_BringerOfDead : Enemy
     public BringerOfDeadAttackState attackState;
     public BringerOfDeadTeleportState teleportState;
     public BringerOfDeadUltimateState ultimateState;
+    public BringerOfDeadDeadState deadState;
     protected override void Start()
     {
         base.Start();
@@ -27,6 +28,7 @@ public class Enemy_BringerOfDead : Enemy
         attackState = new BringerOfDeadAttackState(this, stateMachine, "attack");
         teleportState = new BringerOfDeadTeleportState(this, stateMachine, "tele");
         ultimateState = new BringerOfDeadUltimateState(this, stateMachine, "ulti");
+        deadState = new BringerOfDeadDeadState(this, stateMachine, "dead");
         stateMachine.InitialState(idleState);
     }
     protected override void Update()

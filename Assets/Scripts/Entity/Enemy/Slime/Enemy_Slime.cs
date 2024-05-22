@@ -17,6 +17,7 @@ public class Enemy_Slime : Enemy
         moveState = new SlimeMoveState(this, stateMachine, "move");
         jumpState = new SlimeJumpState(this, stateMachine, "jump");
         attackState = new SlimeAttackState(this, stateMachine, "attack");
+        deadState = new SlimeDeadState(this, stateMachine, "dead");
         stateMachine.InitialState(idleState);
     }
 

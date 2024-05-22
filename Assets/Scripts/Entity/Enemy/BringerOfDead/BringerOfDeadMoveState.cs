@@ -11,7 +11,6 @@ public class BringerOfDeadMoveState : BringerOfDeadState
     public override void Enter()
     {
         base.Enter();
-        Debug.Log("move");
     }
 
     public override void Exit()

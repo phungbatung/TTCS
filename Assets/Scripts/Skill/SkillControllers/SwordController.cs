@@ -15,6 +15,7 @@ public class SwordController : MonoBehaviour
     [Header("Normal mode info")]
     private Vector2 _direction;
     private float destroyTimer;
+    private int normalDamage;
 
     [Header("Boomarang mode info")]
     private int moveDir;
@@ -22,6 +23,7 @@ public class SwordController : MonoBehaviour
     private float maxDistance;
     private Vector2 startPosition;
     private bool isReturning = false;
+    private int boomarangDamage;
     private void Awake()
     {
         anim = GetComponentInChildren<Animator>();
@@ -33,9 +35,14 @@ public class SwordController : MonoBehaviour
     {
         player = PlayerManager.instance.player;
     }
-    public void SetUpNormal(Vector2 _direction) => rb.velocity = _direction;
-    public void SetUpBoomarang(int _moveDir, float _moveSpeed, float _maxDistance)
+    public void SetUpNormal(Vector2 _direction, int _damage)
     {
+        normalDamage = _damage;
+        rb.velocity = _direction;
+    }
+    public void SetUpBoomarang(int _moveDir, float _moveSpeed, float _maxDistance, int _damage)
+    {
+        boomarangDamage = _damage;
         moveDir = _moveDir;
         moveSpeed = _moveSpeed;
         maxDistance = _maxDistance;
@@ -101,8 +108,13 @@ public class SwordController : MonoBehaviour
                 isReturning = true;
                 rb.velocity = Vector2.zero;
             }
+            else
+                enemy.stats.TakeDamage(boomarangDamage);
             return;
         }
+        else
+            if (enemy!=null)
+                enemy.stats.TakeDamage(normalDamage);
         box.enabled = false;
         rb.isKinematic = true;
         rb.constraints = RigidbodyConstraints2D.FreezeAll;

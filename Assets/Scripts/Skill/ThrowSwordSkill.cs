@@ -22,11 +22,13 @@ public class ThrowSwordSkill : Skill
     public bool isBoomarang = false;
     [Header("Normal mode")]
     [SerializeField] private float normalGravity;
+    [SerializeField] private int normalDamage;
 
     [Header("Boomerang mode")]
     [SerializeField] private float boomarangGravity;
     [SerializeField] private float moveSpeed;
     [SerializeField] private float maxDistance;
+    [SerializeField] private int boomerangDamage;
     
     protected override void Start()
     {
@@ -53,9 +55,9 @@ public class ThrowSwordSkill : Skill
         else gravity = normalGravity;
         swordScript.SetUpSword(_transform, gravity, isBoomarang);
         if (isBoomarang)
-            swordScript.SetUpBoomarang(player.facingDir, moveSpeed, maxDistance);
+            swordScript.SetUpBoomarang(player.facingDir, moveSpeed, maxDistance, boomerangDamage);
         else
-            swordScript.SetUpNormal(finalDirection);
+            swordScript.SetUpNormal(finalDirection, normalDamage);
         
         SwitchActiveDots(false);
     }

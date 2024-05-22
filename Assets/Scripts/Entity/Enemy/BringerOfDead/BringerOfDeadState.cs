@@ -25,5 +25,7 @@ public class BringerOfDeadState : EnemyState
     public override void Update()
     {
         base.Update();
+        if (enemy.wasDead)
+            stateMachine.ChangeState(enemy.deadState);
     }
 }

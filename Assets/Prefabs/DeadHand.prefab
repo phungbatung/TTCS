@@ -31,7 +31,7 @@ Transform:
   - {fileID: 4764439625392222501}
   - {fileID: 6043292414126231207}
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &653405145879108141
 GameObject:
@@ -185,3 +185,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   point: {fileID: 6043292414126231207}
   size: {x: 1.4, y: 3.3}
+  damage: 150

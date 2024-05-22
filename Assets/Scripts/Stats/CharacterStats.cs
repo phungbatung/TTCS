@@ -21,6 +21,7 @@ public class CharacterStats : MonoBehaviour
     private float damageScale = 1;
 
     public Action onHealthChange;
+    public bool isImmortal;
     protected virtual void Start()
     {
         currentHealth = maxHealth.getValue();
@@ -29,7 +30,10 @@ public class CharacterStats : MonoBehaviour
 
     public virtual void TakeDamage(int _damage)
     {
-
+        if (isImmortal)
+            return;
+        if (UnityEngine.Random.Range(0, 100) <= evasion.getValue())
+            return;
         currentHealth -= _damage;
         if (onHealthChange!=null)
             onHealthChange();

@@ -13,6 +13,7 @@ public class PlayerDashState : PlayerState
         base.Enter();
         stateTimer = player.dashDuration;
         SkillManager.instance.cloneSkill.CreateClone(player.transform, player.facingDir);
+        player.stats.isImmortal = true;
     }
 
     public override void Exit()
@@ -20,6 +21,7 @@ public class PlayerDashState : PlayerState
         base.Exit();
         player.ZeroVelocity();
         player.lastTimeDash = Time.time;
+        player.stats.isImmortal = false;
     }
 
     public override void Update()

@@ -20,4 +20,5 @@ public class SlimeAnimationTriggers : MonoBehaviour
         float xVelocity = (PlayerManager.instance.player.transform.position.x - enemy.transform.position.x)/t;
         enemy.SetVelocity(xVelocity, enemy.jumpForce);
     }
+
 }
