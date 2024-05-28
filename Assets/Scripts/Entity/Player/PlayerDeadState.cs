@@ -13,7 +13,7 @@ public class PlayerDeadState : PlayerState
         base.Enter();
         player.cd.enabled = false;
         player.rb.constraints = RigidbodyConstraints2D.FreezeAll;
-        GameObject.Find("UI").GetComponent<UI>().StartCoroutine("Die");
+        GameObject.Find("Canvas").GetComponent<UI>().StartCoroutine("Die");
     }
 
     public override void Exit()

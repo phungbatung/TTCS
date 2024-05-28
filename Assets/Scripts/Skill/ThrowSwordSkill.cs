@@ -54,6 +54,8 @@ public class ThrowSwordSkill : Skill
         if (isBoomarang) gravity = boomarangGravity;
         else gravity = normalGravity;
         swordScript.SetUpSword(_transform, gravity, isBoomarang);
+        boomerangDamage = (int)(player.stats.damage.getValue() * .4f);
+        normalDamage = player.stats.damage.getValue() * 2;
         if (isBoomarang)
             swordScript.SetUpBoomarang(player.facingDir, moveSpeed, maxDistance, boomerangDamage);
         else

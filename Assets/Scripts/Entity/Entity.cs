@@ -1,6 +1,4 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Entity : MonoBehaviour
@@ -47,13 +45,11 @@ public class Entity : MonoBehaviour
     }
     protected virtual void Start()
     {
-        
-    }
 
-    // Update is called once per frame
+    }
     protected virtual void Update()
     {
-        
+
     }
 
     public virtual void Flip()
@@ -62,10 +58,9 @@ public class Entity : MonoBehaviour
         isFacingRight = !isFacingRight;
         facingDir = -1 * facingDir;
 
-        if (onFlipped != null) 
+        if (onFlipped != null)
             onFlipped();
     }
-
     protected virtual void FlipController(float x)
     {
         if (x > 0 && !isFacingRight)
@@ -73,7 +68,6 @@ public class Entity : MonoBehaviour
         if (x < 0 && isFacingRight)
             Flip();
     }
-
     public virtual void SetVelocity(float _x, float _y)
     {
         rb.velocity = new Vector2(_x, _y);
@@ -83,30 +77,24 @@ public class Entity : MonoBehaviour
     {
         rb.velocity = Vector2.zero;
     }
-
     public virtual bool IsGrounded() => Physics2D.Raycast(groundCheckPoint.position, Vector2.down, groundCheckDistance, groundLayer);
-    
-
     public virtual bool IsWallDetected() => Physics2D.Raycast(wallCheckPoint.position, Vector2.right, facingDir * walllCheckDistance, groundLayer);
-
-    protected virtual void OnDrawGizmos()
-    {
-        Gizmos.DrawLine(groundCheckPoint.position, new Vector2(groundCheckPoint.position.x, groundCheckPoint.position.y - groundCheckDistance));
-        Gizmos.DrawLine(wallCheckPoint.position, new Vector2(wallCheckPoint.position.x + facingDir * walllCheckDistance, wallCheckPoint.position.y));
-        Gizmos.DrawWireSphere(attackPoint.position, attackRadius);
-    }
-
     public virtual void DamagedEffect()
     {
         entityFX.StartCoroutine("FlashFX");
-        rb.velocity = new Vector2(-facingDir * hitImpact.x, hitImpact.y);
+        if (hitImpact != Vector2.zero)
+            rb.velocity = new Vector2(-facingDir * hitImpact.x, hitImpact.y);
     }
-
-
     public virtual IEnumerator BusyFor(float _time)
     {
         isBusy = true;
         yield return new WaitForSeconds(_time);
         isBusy = false;
+    }
+    protected virtual void OnDrawGizmos()
+    {
+        Gizmos.DrawLine(groundCheckPoint.position, new Vector2(groundCheckPoint.position.x, groundCheckPoint.position.y - groundCheckDistance));
+        Gizmos.DrawLine(wallCheckPoint.position, new Vector2(wallCheckPoint.position.x + facingDir * walllCheckDistance, wallCheckPoint.position.y));
+        Gizmos.DrawWireSphere(attackPoint.position, attackRadius);
     }
 }

@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Enemy_Skeleton : Enemy
 {
-
-    
     public SkeletonIdleState idleState { get; private set; }
     public SkeletonMoveState moveState { get; private set; }
     public SkeletonAttackState attackState { get; private set; }
@@ -15,8 +13,6 @@ public class Enemy_Skeleton : Enemy
     {
         base.Awake();
     }
-
-
     protected override void Start()
     {
         base.Start();

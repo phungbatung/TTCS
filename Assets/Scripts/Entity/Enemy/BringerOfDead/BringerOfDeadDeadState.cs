@@ -13,7 +13,7 @@ public class BringerOfDeadDeadState : BringerOfDeadState
         base.Enter();
         enemy.GetComponent<ItemDrop>().Drop();
         enemy.cd.enabled = false;
-        enemy.rb.bodyType = RigidbodyType2D.Static;
+        enemy.rb.constraints = RigidbodyConstraints2D.FreezeAll;
         enemy.wasDead = false;
     }
 

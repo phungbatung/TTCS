@@ -12,15 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da3f66a281eb3564d8727d1e1f15200a, type: 3}
   m_Name: IronSword
   m_EditorClassIdentifier: 
+  itemId: 7d64514c2a68e2247918c6058dfba899
   itemtype: 1
   icon: {fileID: 1526008332, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
   itemName: Iron Sword
   itemDescription: 
   dropRate: 50
   equipmentType: 5
-  damage: 5
-  critChance: 10
-  critPower: 0
+  damage: 25
+  critChance: 5
+  critPower: 50
   maxHealth: 0
   armor: 0
   evasion: 0

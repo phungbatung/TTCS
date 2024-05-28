@@ -11,6 +11,7 @@ public class BringerOfDeadUltimateState : BringerOfDeadState
     public override void Enter()
     {
         base.Enter();
+        enemy.ZeroVelocity();
     }
 
     public override void Exit()

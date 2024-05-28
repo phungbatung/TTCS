@@ -5,23 +5,21 @@ public class CharacterStats : MonoBehaviour
 {
 
     [Header("Offensive stats")]
-    public Stat damage; // Weapon
-    public Stat critChance; // Gaunlets
-    public Stat critPower; // Helmet
-
+    public Stat damage; 
+    public Stat critChance; 
+    public Stat critPower; 
 
     [Header("Defensive stats")]
-    public Stat maxHealth; // Pants
-    public Stat armor; // Chestplate
-    public Stat evasion; // Boots
-    
-
+    public Stat maxHealth; 
+    public Stat armor; 
+    public Stat evasion; 
 
     public int currentHealth;
     private float damageScale = 1;
 
     public Action onHealthChange;
     public bool isImmortal;
+
     protected virtual void Start()
     {
         currentHealth = maxHealth.getValue();
@@ -47,7 +45,6 @@ public class CharacterStats : MonoBehaviour
     {
         if (TargetCanAvoidAttack(_target))
             return;
-            
 
         int totalDamage = Mathf.RoundToInt((damage.getValue())*damageScale);
         if (CanCrit())

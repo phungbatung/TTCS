@@ -14,9 +14,8 @@ public class SlimeDeadState : SlimeState
         enemy.GetComponent<ItemDrop>().Drop();
         stateTimer = 3f;
         enemy.cd.enabled = false;
-        enemy.rb.bodyType = RigidbodyType2D.Static;
+        enemy.rb.constraints = RigidbodyConstraints2D.FreezeAll;
         enemy.wasDead = false;
-        Debug.Log("dead");
     }
 
     public override void Exit()

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da3f66a281eb3564d8727d1e1f15200a, type: 3}
   m_Name: IronHelmet
   m_EditorClassIdentifier: 
+  itemId: 11791e48a123ac543a8f7311bae94a7c
   itemtype: 1
   icon: {fileID: 252102285, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
   itemName: Iron Helmet
@@ -19,8 +20,8 @@ MonoBehaviour:
   dropRate: 50
   equipmentType: 0
   damage: 0
-  critChance: 0
+  critChance: 10
   critPower: 0
   maxHealth: 0
-  armor: 0
+  armor: 10
   evasion: 0

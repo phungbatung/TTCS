@@ -14,7 +14,7 @@ public class SkeletonDeadState : SkeletonState
         enemy.GetComponent<ItemDrop>().Drop();
         stateTimer = 3;
         enemy.cd.enabled = false;
-        enemy.rb.bodyType = RigidbodyType2D.Static;
+        enemy.rb.constraints = RigidbodyConstraints2D.FreezeAll;
         enemy.wasDead = false;
     }
 

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da3f66a281eb3564d8727d1e1f15200a, type: 3}
   m_Name: IronBoots
   m_EditorClassIdentifier: 
+  itemId: 466a196964d9ec340b17679646b8ee6f
   itemtype: 1
   icon: {fileID: 922760870, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
   itemName: Iron Boots
@@ -22,5 +23,5 @@ MonoBehaviour:
   critChance: 0
   critPower: 0
   maxHealth: 0
-  armor: 0
-  evasion: 0
+  armor: 10
+  evasion: 5
