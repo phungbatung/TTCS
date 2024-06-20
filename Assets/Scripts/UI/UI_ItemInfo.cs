@@ -6,19 +6,13 @@ using UnityEngine.UI;
 
 public class UI_ItemInfo : MonoBehaviour
 {
-    public static UI_ItemInfo instance;
-    private ItemData item;
+    public ItemData item;
     [SerializeField] private Image itemImage;
     [SerializeField] private TextMeshProUGUI itemName;
     [SerializeField] private TextMeshProUGUI itemType;
     [SerializeField] private TextMeshProUGUI itemDescription;
     private void Awake()
     {
-        if (instance == null)
-            instance = this;
-        else
-            Destroy(gameObject);
-
         gameObject.SetActive(false);
     }
 

@@ -17,6 +17,7 @@ MonoBehaviour:
   icon: {fileID: 922760870, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
   itemName: Iron Boots
   itemDescription: 
+  price: 1000
   dropRate: 50
   equipmentType: 4
   damage: 0

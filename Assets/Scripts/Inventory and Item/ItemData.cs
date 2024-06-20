@@ -18,6 +18,7 @@ public class ItemData : ScriptableObject
     public Sprite icon;
     public string itemName;
     public string itemDescription;
+    public int price;
     [Range(1, 100)]
     public int dropRate;
 

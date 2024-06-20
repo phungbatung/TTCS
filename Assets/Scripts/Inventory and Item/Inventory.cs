@@ -14,7 +14,7 @@ public class Inventory : MonoBehaviour, ISaveManager
 
 
     [SerializeField] private Transform inventorySlotParent;
-    private UI_ItemSlot[] itemSlots;
+    private UI_ItemSlotInventory[] itemSlots;
 
     [SerializeField] private Transform equipmentSlotParent;
     private UI_EquipmentSlot[] equipmentSlot;
@@ -33,7 +33,7 @@ public class Inventory : MonoBehaviour, ISaveManager
         equipedItem = new ItemData[6];
         inventoryDictionary = new Dictionary<ItemData, InventoryItem>();
 
-        itemSlots = inventorySlotParent.GetComponentsInChildren<UI_ItemSlot>();
+        itemSlots = inventorySlotParent.GetComponentsInChildren<UI_ItemSlotInventory>();
         equipmentSlot = equipmentSlotParent.GetComponentsInChildren<UI_EquipmentSlot>();
 
         inventoryItems = new InventoryItem[itemSlots.Length];
@@ -184,6 +184,22 @@ public class Inventory : MonoBehaviour, ISaveManager
 
         equipmentSlot[index].UpdateItemSlot(null);
 
+    }
+
+    public void BuyingThisItem(ItemData _item, int price)
+    {
+        if (!PlayerManager.instance.hasEnoughGold(price))
+        {
+            Debug.Log("You don't have enough money!");
+            return;
+        }
+        if (!inventoryDictionary.ContainsKey(_item) && inventoryDictionary.Count == inventoryItems.Length)
+        {
+            Debug.Log("Your inventory is full!");
+            return;
+        }
+        PlayerManager.instance.minusGold(price);
+        AddItem(_item);
     }
 
     public void LoadData(GameData _data)

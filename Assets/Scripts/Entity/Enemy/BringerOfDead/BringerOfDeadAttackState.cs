@@ -12,7 +12,6 @@ public class BringerOfDeadAttackState : BringerOfDeadState
     {
         base.Enter();
         enemy.ZeroVelocity();
-        Debug.Log("attack");
     }
 
     public override void Exit()

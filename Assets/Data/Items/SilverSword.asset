@@ -17,6 +17,7 @@ MonoBehaviour:
   icon: {fileID: -671158514, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
   itemName: SilverSword
   itemDescription: 
+  price: 15000
   dropRate: 15
   equipmentType: 5
   damage: 30

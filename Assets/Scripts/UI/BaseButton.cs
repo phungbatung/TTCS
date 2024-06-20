@@ -8,7 +8,7 @@ public abstract class BaseButton : MonoBehaviour
     protected Button button;
 
 
-    void Awake()
+    protected virtual void Awake()
     {
         button = GetComponent<Button>();
         AddOnClickEvent();

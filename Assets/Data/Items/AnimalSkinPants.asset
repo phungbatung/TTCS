@@ -17,6 +17,7 @@ MonoBehaviour:
   icon: {fileID: -791773602, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
   itemName: Animal Skin Pants
   itemDescription: 
+  price: 1000
   dropRate: 50
   equipmentType: 3
   damage: 0

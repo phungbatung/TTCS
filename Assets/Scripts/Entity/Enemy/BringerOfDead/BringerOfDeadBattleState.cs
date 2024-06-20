@@ -24,7 +24,6 @@ public class BringerOfDeadBattleState : BringerOfDeadState
         if ((enemy.transform.position.x < PlayerManager.instance.player.transform.position.x && enemy.facingDir == -1)
             || (enemy.transform.position.x > PlayerManager.instance.player.transform.position.x && enemy.facingDir == 1))
         {
-            Debug.Log("flip");
             enemy.Flip();
         }
         if (Vector2.Distance(enemy.transform.position, PlayerManager.instance.transform.position) > Mathf.Abs(enemy.transform.position.x - enemy.attackPoint.position.x))

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GameData 
 {
+    public int gold;
+    public int diamond;
     public SerializableDictionary<string, int> inventory;
     public List<string> equipmentId;
 

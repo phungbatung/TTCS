@@ -4,8 +4,15 @@ using UnityEngine;
 
 public class BtnCloseItemInfo : BaseButton
 {
+    private UI_ItemInfo itemInfo;
+    protected override void Awake()
+    {
+        base.Awake();
+        itemInfo = GetComponentInParent<UI_ItemInfo>();
+    }
+
     protected override void OnClick()
     {
-        UI_ItemInfo.instance.CloseItemInfo();
+        itemInfo.CloseItemInfo();
     }
 }

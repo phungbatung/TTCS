@@ -59,7 +59,6 @@ public class SaveManager : MonoBehaviour
         {
             saveManager.LoadData(gameData);
         }
-        Debug.Log("Load");
     }
 
     public void SaveGame()
@@ -71,13 +70,11 @@ public class SaveManager : MonoBehaviour
         }
 
         dataHandler.Save(gameData);
-        Debug.Log("Save");
     }
 
     private void OnApplicationQuit()
     {
         SaveGame();
-        Debug.Log("Quit");
     }
 
     private List<ISaveManager> FindAllSaveManagers()
