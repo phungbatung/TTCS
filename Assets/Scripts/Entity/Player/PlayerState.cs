@@ -36,11 +36,13 @@ public class PlayerState
             player.ZeroVelocity();
         if (Input.GetKeyDown(KeyCode.Q) && SkillManager.instance.rageModeSkill.CanBeUse())
             SkillManager.instance.rageModeSkill.SetUpRage();
+        if (Input.GetKeyDown(KeyCode.R))
+            Inventory.instance.UseCurrentPotion();
         CheckForDash();
     }
     protected virtual void CheckForDash()
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift) && (Time.time-player.lastTimeDash) > player.dashCooldown)
+        if (Input.GetKeyDown(KeyCode.LeftShift) && (Time.time - player.lastTimeDash) > player.dashCooldown)
         {
             player.dashDir = player.facingDir;
             if (player.IsWallDetected() && !player.IsGrounded()) 

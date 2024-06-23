@@ -49,6 +49,7 @@ public class PlayerManager : MonoBehaviour, ISaveManager
     {
         gold = _data.gold;
         diamond = _data.diamond;
+        currency.UpdateCurrencyUI();
     }
 
     public void SaveData(ref GameData _data)

@@ -8,13 +8,14 @@ using UnityEditor;
 public enum ItemType
 {
     Item,
-    Equipment
+    Equipment,
+    Potion
 }
 [CreateAssetMenu(fileName = "New Item Data", menuName ="Data/Items")]
 public class ItemData : ScriptableObject
 {
     public string itemId;
-    public ItemType itemtype;
+    public ItemType itemType;
     public Sprite icon;
     public string itemName;
     public string itemDescription;
@@ -29,6 +30,10 @@ public class ItemData : ScriptableObject
         itemId = AssetDatabase.AssetPathToGUID(path);
 #endif
     }
+    public virtual string ItemType()
+    {
+        return itemType.ToString();
+    }    
     public virtual string Description()
     {
         return itemDescription;

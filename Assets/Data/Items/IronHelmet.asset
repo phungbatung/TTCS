@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: IronHelmet
   m_EditorClassIdentifier: 
   itemId: 11791e48a123ac543a8f7311bae94a7c
-  itemtype: 1
+  itemType: 1
   icon: {fileID: 252102285, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
   itemName: Iron Helmet
   itemDescription: 

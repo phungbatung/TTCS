@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: AnimalSkinPants
   m_EditorClassIdentifier: 
   itemId: b3f60bf2582bcb942b0b75258dd3b46f
-  itemtype: 1
+  itemType: 1
   icon: {fileID: -791773602, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
   itemName: Animal Skin Pants
   itemDescription: 

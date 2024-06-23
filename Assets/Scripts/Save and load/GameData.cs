@@ -8,6 +8,7 @@ public class GameData
     public int diamond;
     public SerializableDictionary<string, int> inventory;
     public List<string> equipmentId;
+    public string currentPotion;
 
     public GameData()
     {

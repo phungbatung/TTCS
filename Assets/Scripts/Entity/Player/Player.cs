@@ -13,6 +13,12 @@ public class Player : Entity
     public float dashCooldown;
     [HideInInspector]public float lastTimeDash;
 
+    [Header("Dust Effect")]
+    public GameObject dashDustPrefab;
+    public Vector2 dashPosition;
+    public GameObject jumpDustPrefab;
+    public Vector2 jumpPosition;
+
     #region PlayerState
     public  PlayerStateMachine stateMachine { get; private set; }
     public PlayerIdleState idleState { get; private set; }
@@ -70,5 +76,15 @@ public class Player : Entity
     public void DecreaseSpeedBy(float _speed)
     {
         moveSpeed -= _speed;
+    }
+    public void SpawnDashDust()
+    {
+        GameObject dashDust = dashDustPrefab.Spawn();
+        dashDust.GetComponent<DustEffect>().SetUpDust(transform.position + (Vector3)dashPosition, facingDir);
+    }    
+    public void SpawnJumpDust()
+    {
+        GameObject jumpDust = jumpDustPrefab.Spawn();
+        jumpDust.GetComponent<DustEffect>().SetUpDust(transform.position + (Vector3)jumpPosition, facingDir);
     }
 }

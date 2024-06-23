@@ -13,7 +13,7 @@ public enum EquipmentType
     Weapon
 }
 [CreateAssetMenu(fileName = "New Equipment Data", menuName = "Data/Equipment")]
-public class EquipmentData : ItemData
+public class ItemData_Equipment : ItemData
 {
     public EquipmentType equipmentType;
 
@@ -50,6 +50,10 @@ public class EquipmentData : ItemData
         stats.evasion.removeModifier(evasion);
     }
 
+    public override string ItemType()
+    {
+        return itemType.ToString() + "/" + equipmentType.ToString();
+    }
     public override string Description()
     {
         string description = "";

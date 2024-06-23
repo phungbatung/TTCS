@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: IronChestplate
   m_EditorClassIdentifier: 
   itemId: 0105060bf9a1be24ebfdfe0af8a9a930
-  itemtype: 1
+  itemType: 1
   icon: {fileID: -1581127718, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
   itemName: Iron Chestplate
   itemDescription: 

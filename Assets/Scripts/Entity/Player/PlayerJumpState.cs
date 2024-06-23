@@ -10,6 +10,7 @@ public class PlayerJumpState : PlayerState
     public override void Enter()
     {
         base.Enter();
+        player.SpawnJumpDust();
         player.SetVelocity(0, player.jumpForce);
     }
 

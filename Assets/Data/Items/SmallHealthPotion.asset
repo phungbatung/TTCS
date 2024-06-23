@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f37b448bed5689741b43d13a5420f50f, type: 3}
+  m_Name: SmallHealthPotion
+  m_EditorClassIdentifier: 
+  itemId: 888577915025fd84182c2bd37666bb61
+  itemType: 2
+  icon: {fileID: 1206954855, guid: be55291aae08d434db3da3b59db3ab4a, type: 3}
+  itemName: Small Heath Potion
+  itemDescription: 
+  price: 100
+  dropRate: 100
+  healthHeals: 30

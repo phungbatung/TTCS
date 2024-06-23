@@ -12,7 +12,7 @@ public class PlayerDashState : PlayerState
     {
         base.Enter();
         stateTimer = player.dashDuration;
-        SkillManager.instance.cloneSkill.CreateClone(player.transform, player.facingDir);
+        player.SpawnDashDust();
         player.stats.isImmortal = true;
     }
 

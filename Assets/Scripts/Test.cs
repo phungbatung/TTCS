@@ -5,6 +5,11 @@ using UnityEngine;
 
 public class Test : MonoBehaviour
 {
+    private void Start()
+    {
+        GetComponent<ItemDrop>().Drop();    
+    }
+
     [Serializable]
     public struct Dics
     {

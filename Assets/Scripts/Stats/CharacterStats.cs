@@ -100,5 +100,10 @@ public class CharacterStats : MonoBehaviour
     {
         return $"{maxHealth.getValue()}\n{armor.getValue()}\n{evasion.getValue()}%";
     }
-        
+    public void Healing(int _health)
+    {
+        currentHealth += _health;
+        if (currentHealth > maxHealth.getValue())
+            currentHealth = maxHealth.getValue();
+    }
 }

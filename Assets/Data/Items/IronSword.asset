@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: IronSword
   m_EditorClassIdentifier: 
   itemId: 7d64514c2a68e2247918c6058dfba899
-  itemtype: 1
+  itemType: 1
   icon: {fileID: 1526008332, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
   itemName: Iron Sword
   itemDescription: 

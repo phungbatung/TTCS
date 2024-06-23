@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: IronGauntlets
   m_EditorClassIdentifier: 
   itemId: 53a2fb2625b550949bf35f245d72c932
-  itemtype: 1
+  itemType: 1
   icon: {fileID: 1622045194, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
   itemName: Iron Gauntlets
   itemDescription: 

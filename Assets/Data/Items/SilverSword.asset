@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SilverSword
   m_EditorClassIdentifier: 
   itemId: e4cf270d0b122f64ca1b1afcb5a39fb2
-  itemtype: 1
+  itemType: 1
   icon: {fileID: -671158514, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
   itemName: SilverSword
   itemDescription: 

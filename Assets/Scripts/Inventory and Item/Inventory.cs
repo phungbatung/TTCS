@@ -8,10 +8,8 @@ using UnityEngine;
 public class Inventory : MonoBehaviour, ISaveManager
 {
     public static Inventory instance;
-
     public InventoryItem[] inventoryItems;
     public Dictionary<ItemData, InventoryItem> inventoryDictionary;
-
 
     [SerializeField] private Transform inventorySlotParent;
     private UI_ItemSlotInventory[] itemSlots;
@@ -22,6 +20,9 @@ public class Inventory : MonoBehaviour, ISaveManager
     public List<ItemData> itemDataBase;
     public List<InventoryItem> loadedItems;
     public List<ItemData> loadedEquipment;
+
+    public ItemData currentPotion;
+    public UI_ItemSlotPotion potionSlot;
 
     private void Awake()
     {
@@ -56,7 +57,10 @@ public class Inventory : MonoBehaviour, ISaveManager
                 }
             }
 
-            return;
+            if (currentPotion != null && inventoryDictionary.ContainsKey(currentPotion))
+                potionSlot.UpdateItemSlot(inventoryDictionary[currentPotion]);
+            else
+                potionSlot.UpdateItemSlot(null);
         }
     }
 
@@ -92,6 +96,9 @@ public class Inventory : MonoBehaviour, ISaveManager
                 }
             }
         }
+        // Check for update in current potion slot
+        if (_item == currentPotion)
+            potionSlot.UpdateItemSlot(inventoryDictionary[_item]);
     }
 
     public void RemoveItem(ItemData _item)
@@ -115,7 +122,7 @@ public class Inventory : MonoBehaviour, ISaveManager
 
     public void Equip(ItemData _item)
     {
-        EquipmentData equipment = _item as EquipmentData;
+        ItemData_Equipment equipment = _item as ItemData_Equipment;
         int index=0;
         switch(equipment.equipmentType)
         {
@@ -153,7 +160,7 @@ public class Inventory : MonoBehaviour, ISaveManager
 
     public void Unequip(ItemData _item)
     {
-        EquipmentData equipment = _item as EquipmentData;
+        ItemData_Equipment equipment = _item as ItemData_Equipment;
         int index = 0;
         switch (equipment.equipmentType)
         {
@@ -186,9 +193,9 @@ public class Inventory : MonoBehaviour, ISaveManager
 
     }
 
-    public void BuyingThisItem(ItemData _item, int price)
+    public void BuyingItem(ItemData _item, int _price)
     {
-        if (!PlayerManager.instance.hasEnoughGold(price))
+        if (!PlayerManager.instance.hasEnoughGold(_price))
         {
             Debug.Log("You don't have enough money!");
             return;
@@ -198,9 +205,41 @@ public class Inventory : MonoBehaviour, ISaveManager
             Debug.Log("Your inventory is full!");
             return;
         }
-        PlayerManager.instance.minusGold(price);
+        PlayerManager.instance.minusGold(_price);
         AddItem(_item);
     }
+    public void SetPotion(ItemData _item)
+    {
+        if (_item.itemType != ItemType.Potion)
+            return;
+        if (inventoryDictionary.ContainsKey(_item))
+        {
+            currentPotion = _item;
+            potionSlot.UpdateItemSlot(inventoryDictionary[_item]);
+        }
+
+    }
+    public void UsePotion(ItemData _item) 
+    {
+        if (!inventoryDictionary.ContainsKey(_item))
+        {
+            Debug.Log("You don't have enough potion of this type");
+            return;
+        }
+        ItemData_Potion potion = _item as ItemData_Potion;
+        RemoveItem(_item);
+        potion.Healing();
+        if (inventoryDictionary.ContainsKey(_item))
+            potionSlot.UpdateItemSlot(inventoryDictionary[_item]);
+        else
+            potionSlot.UpdateItemSlot(null);
+    }
+    public void UseCurrentPotion()
+    {
+        if (currentPotion != null)
+            UsePotion(currentPotion);
+    }
+
 
     public void LoadData(GameData _data)
     {
@@ -228,7 +267,16 @@ public class Inventory : MonoBehaviour, ISaveManager
                 }
             }
         }
-
+        if (_data.currentPotion != "")
+        {
+            foreach (var item in itemDataBase)
+            {
+                if (item != null && _data.currentPotion == item.itemId)
+                {
+                    currentPotion = item;
+                }
+            }
+        }
         AddStartingItems();
     }
 
@@ -246,6 +294,10 @@ public class Inventory : MonoBehaviour, ISaveManager
             if (equipedItem[i] != null)
                 _data.equipmentId.Add(equipedItem[i].itemId);
         }
+        if(currentPotion != null)
+            _data.currentPotion = currentPotion.itemId;
+        else
+            _data.currentPotion = "";
     }
 
 #if UNITY_EDITOR

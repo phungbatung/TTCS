@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: IronBoots
   m_EditorClassIdentifier: 
   itemId: 466a196964d9ec340b17679646b8ee6f
-  itemtype: 1
+  itemType: 1
   icon: {fileID: 922760870, guid: a9ca9a41598dd2e44b125928045c518f, type: 3}
   itemName: Iron Boots
   itemDescription: 
