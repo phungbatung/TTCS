@@ -27,16 +27,20 @@ public class PlayerGroundedState : PlayerState
             stateMachine.ChangeState(player.jumpState);
         if (!player.IsGrounded())
             stateMachine.ChangeState(player.airState);
-        if (Input.GetKeyDown(KeyCode.Mouse1))
+        /* if (Input.GetKeyDown(KeyCode.Mouse1))
+         {
+             stateMachine.ChangeState(player.aimSword);
+             isReturn = true;
+         }*/
+        if (Input.GetKeyDown(KeyCode.G) && SkillManager.instance.flyThunderGodSkill.CanBeUse())
         {
-            SkillManager.instance.throwSwordSkill.SetNormalMode();
             stateMachine.ChangeState(player.aimSword);
             isReturn = true;
         }
+
         if (Input.GetKeyDown(KeyCode.E))
         {
-            SkillManager.instance.throwSwordSkill.SetBomerangMode();
-            stateMachine.ChangeState(player.aimSword);
+            stateMachine.ChangeState(player.throwSword);
             isReturn = true;
         }
         if (Input.GetKeyDown(KeyCode.Mouse0))

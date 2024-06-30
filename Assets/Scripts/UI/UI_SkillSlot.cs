@@ -6,8 +6,10 @@ using UnityEngine.UI;
 
 public class UI_SkillSlot : MonoBehaviour
 {
-    [SerializeField] private Image image;
-    [SerializeField] private TextMeshProUGUI coolDown;
+    [SerializeField] private Image coolDownImage;
+    [SerializeField] private TextMeshProUGUI textCoolDown;
+    private float coolDown;
+    private float coolDownTimer;
     public void UpdateSkillUI()
     {
         

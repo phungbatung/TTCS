@@ -18,8 +18,8 @@ public class UI_EquipmentShop : MonoBehaviour
     {
         itemsDataBase = Inventory.instance.itemDataBase;
         ResetListItem();
-        gameObject.SetActive(false);
         isOpen = false;
+        gameObject.SetActive(false);
     }
     private void OnDisable()
     {

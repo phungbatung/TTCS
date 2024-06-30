@@ -5,70 +5,31 @@ using UnityEngine;
 
 public class SwordController : MonoBehaviour
 {
-    private Animator anim;
     private Rigidbody2D rb;
-    private CircleCollider2D circle;
     private BoxCollider2D box;
-    private bool isBoomarang = false;
-    private Player player;
-
-    [Header("Normal mode info")]
-    private Vector2 _direction;
     private float destroyTimer;
-    private int normalDamage;
+    private int damage;
 
-    [Header("Boomarang mode info")]
-    private int moveDir;
-    private float moveSpeed;
-    private float maxDistance;
-    private Vector2 startPosition;
-    private bool isReturning = false;
-    private int boomarangDamage;
     private void Awake()
     {
-        anim = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody2D>();
-        circle = GetComponent<CircleCollider2D>();
         box = GetComponent<BoxCollider2D>();
     }
-    private void Start()
-    {
-        player = PlayerManager.instance.player;
-    }
-    public void SetUpNormal(Vector2 _direction, int _damage)
-    {
-        normalDamage = _damage;
-        rb.velocity = _direction;
-    }
-    public void SetUpBoomarang(int _moveDir, float _moveSpeed, float _maxDistance, int _damage)
-    {
-        boomarangDamage = _damage;
-        moveDir = _moveDir;
-        moveSpeed = _moveSpeed;
-        maxDistance = _maxDistance;
-    }
 
-    public void SetUpSword(Transform _transform, float _gravity, bool _isBoomarang)
+    public void SetUpSword(Transform _transform, float _gravity, Vector2 _direction, int _damage)
     {
         transform.position = _transform.position;
-        startPosition = _transform.position;
         rb.gravityScale = _gravity;
-        isBoomarang = _isBoomarang;
-        anim.SetBool("Spin", isBoomarang);
-
-        box.enabled = !isBoomarang;
-        circle.enabled = isBoomarang;
+        damage = _damage;
+        rb.velocity = _direction;
+        destroyTimer = 3.0f;
     }
     private void Update()
     {
-        if (isBoomarang)
-            BoomerangLogic();
-        else
-            NormalLogic();
-
+        SwordLogic();
     }
 
-    private void NormalLogic()
+    private void SwordLogic()
     {
         destroyTimer -= Time.deltaTime;
         if (destroyTimer <= 0)
@@ -77,44 +38,16 @@ public class SwordController : MonoBehaviour
             transform.right = rb.velocity;
     }
 
-    private void BoomerangLogic()
-    {
-        if (isReturning)
-        {
-            transform.position = Vector2.MoveTowards(transform.position, player.transform.position, moveSpeed * Time.deltaTime);
-            if (Vector2.Distance(transform.position, player.transform.position) < .5f)
-                gameObject.Despawn();
-        }
-        else
-        {
-            rb.velocity = new Vector2(moveDir * moveSpeed, 0);
-            if (Vector2.Distance(transform.position, startPosition) >= maxDistance)
-            {
-                isReturning = true;
-                rb.velocity = Vector2.zero;
-            }
-        }
-    }
+    
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Enemy enemy = collision.GetComponent<Enemy>();
         if (enemy != null)
-            enemy.DamagedEffect();
-        if (isBoomarang)
         {
-            if (enemy == null)
-            {
-                isReturning = true;
-                rb.velocity = Vector2.zero;
-            }
-            else
-                enemy.stats.TakeDamage(boomarangDamage);
-            return;
+            enemy.DamagedEffect();
+            enemy.stats.TakeDamage(damage);
         }
-        else
-            if (enemy!=null)
-                enemy.stats.TakeDamage(normalDamage);
         box.enabled = false;
         rb.isKinematic = true;
         rb.constraints = RigidbodyConstraints2D.FreezeAll;
@@ -127,8 +60,8 @@ public class SwordController : MonoBehaviour
     }
     public void OnPreDisable()
     {
-        isReturning = false;
         rb.bodyType = RigidbodyType2D.Dynamic;
         rb.constraints = RigidbodyConstraints2D.None;
+        box.enabled = true;
     }
 }

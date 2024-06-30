@@ -8,30 +8,28 @@ using static UnityEditor.Progress;
 public class UI_ItemInfo : MonoBehaviour
 {
     public ItemData item;
-    [SerializeField] private Image itemImage;
-    [SerializeField] private TextMeshProUGUI itemName;
-    [SerializeField] private TextMeshProUGUI itemType;
-    [SerializeField] private TextMeshProUGUI itemDescription;
-    private BaseButton[] buttons;
-    private void Awake()
+    [SerializeField] protected Image itemImage;
+    [SerializeField] protected TextMeshProUGUI itemName;
+    [SerializeField] protected TextMeshProUGUI itemType;
+    [SerializeField] protected TextMeshProUGUI itemDescription;
+    
+    protected virtual void Awake()
     {
-        buttons = GetComponentsInChildren<BaseButton>();
         gameObject.SetActive(false);
     }
 
-    public void SetItemInfo(ItemData _item)
+    public virtual void SetItemInfo(ItemData _item)
     {
+        gameObject.SetActive(true);
         if (_item.itemType == ItemType.Item)
             SetNormalItem(_item);
         else if (_item.itemType == ItemType.Equipment)
             SetEquipmentItem(_item);
         else if (_item.itemType == ItemType.Potion)
             SetPotionItem(_item);
-        SetupButton();
-        gameObject.SetActive(true);
     }
 
-    private void SetNormalItem(ItemData _item)
+    protected virtual void SetNormalItem(ItemData _item)
     {
         item = _item;
         itemImage.sprite = item.icon;
@@ -39,7 +37,7 @@ public class UI_ItemInfo : MonoBehaviour
         itemType.text = item.ItemType();
         itemDescription.text = item.itemDescription;
     }
-    private void SetEquipmentItem(ItemData _item)
+    protected virtual void SetEquipmentItem(ItemData _item)
     {
         item = _item;
         ItemData_Equipment equipment = _item as ItemData_Equipment;
@@ -48,8 +46,7 @@ public class UI_ItemInfo : MonoBehaviour
         itemType.text = equipment.ItemType();
         itemDescription.text = equipment.Description();
     }
-
-    private void SetPotionItem(ItemData _item)
+    protected virtual void SetPotionItem(ItemData _item)
     {
         item = _item;
         ItemData_Potion potion = _item as ItemData_Potion;
@@ -59,7 +56,7 @@ public class UI_ItemInfo : MonoBehaviour
         itemDescription.text = potion.Description();
     }
     
-    public void CloseItemInfo()
+    public virtual void CloseItemInfo()
     {
         itemImage.sprite = null;
         itemName.text = "";
@@ -68,59 +65,27 @@ public class UI_ItemInfo : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    public void EquipItem()
+    public virtual void EquipItem()
     {
         if(item.itemType == ItemType.Equipment)
             Inventory.instance.Equip(item);
         CloseItemInfo();
     }
 
-    public void RemoveItem()
+    public virtual void RemoveItem()
     {
         Inventory.instance.RemoveItem(item);
         CloseItemInfo();
     }
 
-    public void UsePotion()
+    public virtual void UsePotion()
     {
         Inventory.instance.UsePotion(item);
     }
 
-    public void MoveToSlot()
+    public virtual void MoveToSlot()
     {
         Inventory.instance.SetPotion(item);
     }
-    public void SetupButton()
-    {
-        if (item.itemType == ItemType.Item)
-        {
-            foreach (var button in buttons)
-            {
-                if (button.name == "BtnClose" || button.name == "BtnRemove")
-                    button.gameObject.SetActive(true);
-                else
-                    button.gameObject.SetActive(false);
-            }
-        }
-        else if (item.itemType == ItemType.Equipment)
-        {
-            foreach (var button in buttons)
-            {
-                if (button.name == "BtnClose" || button.name == "BtnRemove"|| button.name == "BtnEquip")
-                    button.gameObject.SetActive(true);
-                else
-                    button.gameObject.SetActive(false);
-            }
-        }
-        else if (item.itemType == ItemType.Potion)
-        {
-            foreach (var button in buttons)
-            {
-                if (button.name == "BtnClose" || button.name == "BtnRemove" || button.name == "BtnUse" || button.name == "BtnMoveToSlot")
-                    button.gameObject.SetActive(true);
-                else
-                    button.gameObject.SetActive(false);
-            }
-        }
-    }
+   
 }

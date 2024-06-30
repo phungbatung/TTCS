@@ -30,6 +30,8 @@ public class Player : Entity
     public PlayerDashState dashState { get; private set; }
     public PlayerPrimaryAttack primaryAttack { get; private set; }
     public PlayerAimSword aimSword { get; private set; }
+    public PlayerThrowSpinSword throwSword { get; private set; }
+    public PlayerTeleportState teleportState { get; private set; }
     public PlayerDeadState deadState { get; private set; }
     #endregion
 
@@ -50,6 +52,8 @@ public class Player : Entity
         dashState = new PlayerDashState(stateMachine, this, "Dash");
         primaryAttack = new PlayerPrimaryAttack(stateMachine, this, "Attack");
         aimSword = new PlayerAimSword(stateMachine, this, "Aim");
+        throwSword = new PlayerThrowSpinSword(stateMachine, this, "Boomerang");
+        teleportState = new PlayerTeleportState(stateMachine, this, "Teleport");
         deadState = new PlayerDeadState(stateMachine, this, "Dead");
 
         stateMachine.InitialState(idleState);
@@ -86,5 +90,9 @@ public class Player : Entity
     {
         GameObject jumpDust = jumpDustPrefab.Spawn();
         jumpDust.GetComponent<DustEffect>().SetUpDust(transform.position + (Vector3)jumpPosition, facingDir);
+    }
+    public void PlayerTeleportTo(Vector2 _position)
+    {
+        transform.position = _position;
     }
 }

@@ -8,6 +8,8 @@ public class SkillManager : MonoBehaviour
     public CloneSkill cloneSkill;
     public ThrowSwordSkill throwSwordSkill;
     public RageModeSkill rageModeSkill;
+    public BoomarangSwordSkill boomarangSwordSkill;
+    public FlyThunderGodSkill flyThunderGodSkill;
     void Awake()
     {
         if (instance != null)
@@ -22,5 +24,7 @@ public class SkillManager : MonoBehaviour
         cloneSkill = GetComponent<CloneSkill>();
         throwSwordSkill = GetComponent<ThrowSwordSkill>();
         rageModeSkill = GetComponent<RageModeSkill>();
+        boomarangSwordSkill = GetComponent <BoomarangSwordSkill>();
+        flyThunderGodSkill = GetComponent<FlyThunderGodSkill>();
     }
 }

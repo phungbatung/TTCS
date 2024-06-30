@@ -31,4 +31,12 @@ public class PlayerAnimationTriggers : MonoBehaviour
     {
         SkillManager.instance.throwSwordSkill.CreateSword(player.transform);
     }
+    private void CreateSpinSword()
+    {
+        SkillManager.instance.boomarangSwordSkill.CreateSword(player.transform);
+    }    
+    private void CreateThunderSword()
+    {
+        SkillManager.instance.flyThunderGodSkill.CreateSword(player.transform);
+    }
 }

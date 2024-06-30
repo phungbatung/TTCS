@@ -22,8 +22,7 @@ public class UI_HealthBar : MonoBehaviour
 
     public void UpdateHealthBarUI()
     {
-        slider.maxValue = entity.stats.maxHealth.getValue();
-        slider.value = entity.stats.currentHealth;
+        slider.value = entity.stats.currentHealth/entity.stats.maxHealth.getValue();
     }
     private void FlipUI()
     {
