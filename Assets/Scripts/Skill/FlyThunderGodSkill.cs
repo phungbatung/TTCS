@@ -38,7 +38,7 @@ public class FlyThunderGodSkill : Skill
     }
     private void CheckForTeleport()
     {
-        if (canBeTeleport && Input.GetKeyDown(KeyCode.G))
+        if (canBeTeleport && Input.GetKeyDown(KeyCode.E))
         {
             player.stateMachine.ChangeState(player.teleportState);
             GameObject thunder = teleportThunder.Spawn();

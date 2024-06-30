@@ -1244,10 +1244,10 @@ GameObject:
   m_Component:
   - component: {fileID: 139165481}
   - component: {fileID: 139165480}
-  - component: {fileID: 139165482}
   - component: {fileID: 139165483}
-  - component: {fileID: 139165484}
+  - component: {fileID: 139165482}
   - component: {fileID: 139165485}
+  - component: {fileID: 139165484}
   - component: {fileID: 139165486}
   m_Layer: 0
   m_Name: SkillManager
@@ -1295,7 +1295,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 139165479}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 42ee785d1b8d200469dd0ffb9f504cd3, type: 3}
   m_Name: 
@@ -1311,7 +1311,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 139165479}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 60b2fd4a351f0424fb66a76fbe03e7e1, type: 3}
   m_Name: 
@@ -1339,8 +1339,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0dc1f42707dd094b92467aedc93e809, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldownImage: {fileID: 0}
-  textCooldown: {fileID: 0}
+  cooldownImage: {fileID: 1612979472}
+  textCooldown: {fileID: 1982108963}
   cooldown: 20
   ghostPrefab: {fileID: 8532562410872601313, guid: 4da8655e814423e4bbd8e3b47ef86681, type: 3}
   rageColor: {r: 0.78431374, g: 0.3137255, b: 0.2509804, a: 1}
@@ -1361,12 +1361,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a3a45e8c52ef8f4a964b9bdb36d23cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldownImage: {fileID: 0}
-  textCooldown: {fileID: 0}
-  cooldown: 0
+  cooldownImage: {fileID: 1418195874}
+  textCooldown: {fileID: 1287523745}
+  cooldown: 0.5
   swordPrefab: {fileID: 6393657521109292523, guid: 8d0cebe8d2733f240bbda0861f61e5e2, type: 3}
   moveSpeed: 20
-  maxDistance: 15
+  maxDistance: 10
   damage: 0
 --- !u!114 &139165486
 MonoBehaviour:
@@ -1380,8 +1380,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0896ad4391f2d554a9277a98994f727f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldownImage: {fileID: 0}
-  textCooldown: {fileID: 0}
+  cooldownImage: {fileID: 1676475304}
+  textCooldown: {fileID: 491212263}
   cooldown: 3
   swordPrefab: {fileID: 2921478175846642911, guid: e50a3fe597c1ae24f8c58924eb8e2f9c, type: 3}
   teleportThunder: {fileID: 7832698785369365175, guid: 9711e9caa18766e4589d74eb654800a8, type: 3}
@@ -3781,9 +3781,9 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
-  m_FillAmount: 1
+  m_FillAmount: 0
   m_FillClockwise: 0
-  m_FillOrigin: 2
+  m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
 --- !u!222 &267070371
@@ -4099,7 +4099,7 @@ GameObject:
   - component: {fileID: 307865013}
   - component: {fileID: 307865012}
   m_Layer: 5
-  m_Name: SkillFrame
+  m_Name: SkillFrame_E
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5539,7 +5539,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 50
+  m_text: '
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 84bdc42b70bb5e54aa18bb33c1fa834e, type: 2}
   m_sharedMaterial: {fileID: -8065883861848785263, guid: 84bdc42b70bb5e54aa18bb33c1fa834e, type: 2}
@@ -6691,7 +6693,7 @@ GameObject:
   - component: {fileID: 649406564}
   - component: {fileID: 649406563}
   m_Layer: 5
-  m_Name: SkillFrame
+  m_Name: SkillFrame_Q
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12241,7 +12243,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 50
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 84bdc42b70bb5e54aa18bb33c1fa834e, type: 2}
   m_sharedMaterial: {fileID: -8065883861848785263, guid: 84bdc42b70bb5e54aa18bb33c1fa834e, type: 2}
@@ -13332,7 +13334,7 @@ GameObject:
   - component: {fileID: 1394377527}
   - component: {fileID: 1394377526}
   m_Layer: 5
-  m_Name: SkillFrame
+  m_Name: SkillFrame_RM
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13975,7 +13977,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
-  m_FillAmount: 1
+  m_FillAmount: 0
   m_FillClockwise: 0
   m_FillOrigin: 2
   m_UseSpriteMesh: 0
@@ -15306,7 +15308,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 50
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 84bdc42b70bb5e54aa18bb33c1fa834e, type: 2}
   m_sharedMaterial: {fileID: -8065883861848785263, guid: 84bdc42b70bb5e54aa18bb33c1fa834e, type: 2}
@@ -16233,7 +16235,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
-  m_FillAmount: 1
+  m_FillAmount: 0
   m_FillClockwise: 0
   m_FillOrigin: 2
   m_UseSpriteMesh: 0
@@ -16807,7 +16809,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
-  m_FillAmount: 1
+  m_FillAmount: 0
   m_FillClockwise: 0
   m_FillOrigin: 2
   m_UseSpriteMesh: 0
@@ -17804,7 +17806,7 @@ GameObject:
   - component: {fileID: 1735694738}
   - component: {fileID: 1735694740}
   m_Layer: 5
-  m_Name: SkillFrame
+  m_Name: SkillFrame_LM
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -38777,7 +38779,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 50
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 84bdc42b70bb5e54aa18bb33c1fa834e, type: 2}
   m_sharedMaterial: {fileID: -8065883861848785263, guid: 84bdc42b70bb5e54aa18bb33c1fa834e, type: 2}

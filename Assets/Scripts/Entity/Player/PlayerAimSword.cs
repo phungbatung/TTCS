@@ -30,7 +30,7 @@ public class PlayerAimSword : PlayerState
         /*if (Input.GetKeyUp(KeyCode.Mouse1))
             player.anim.SetBool("Throw", true);
         mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);*/
-        if (Input.GetKeyUp(KeyCode.G))
+        if (Input.GetKeyUp(KeyCode.E))
             player.anim.SetBool("Throw", true);
         /*if(!boomarangMode)
             if ((mousePosition.x > player.transform.position.x && player.facingDir == -1) || (mousePosition.x < player.transform.position.x && player.facingDir == 1))

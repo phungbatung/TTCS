@@ -16,19 +16,20 @@ public class Skill : MonoBehaviour
     protected virtual void Start()
     {
         player = PlayerManager.instance.player;
+        canBeUse = true;
     }    
 
     protected virtual void Update()
     {
-        cooldownTimer -= Time.deltaTime;
-        /*if (canBeUse)
-            ApplyCooldown();*/
+        if (!canBeUse)
+            ApplyCooldown();
     }
     public virtual bool CanBeUse()
     {
-        if (cooldownTimer <= 0)
+        if (canBeUse)
         {
             cooldownTimer = cooldown;
+            canBeUse = false;
             return true;
         }
         return false;
@@ -37,14 +38,15 @@ public class Skill : MonoBehaviour
     public void ApplyCooldown()
     {
         cooldownTimer -= Time.deltaTime;
-        if (cooldownTimer < 0.0f)
+        if (cooldownTimer <= 0.0f)
         {
+            canBeUse = true;
             textCooldown.text = "";
             cooldownImage.fillAmount = 0.0f;
         }
         else
         {
-            textCooldown.text = ((int)cooldownTimer).ToString();
+            textCooldown.text = cooldownTimer.ToString("#.##");
             cooldownImage.fillAmount = cooldownTimer / cooldown;
         }
     }
