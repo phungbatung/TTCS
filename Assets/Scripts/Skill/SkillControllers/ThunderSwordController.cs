@@ -57,7 +57,6 @@ public class ThunderSwordController : MonoBehaviour
 
     private void OnDisable()
     {
-        Debug.Log("disable");
         SkillManager.instance.flyThunderGodSkill.canBeUseSkill = true;
         SkillManager.instance.flyThunderGodSkill.canBeTeleport = false;
     }

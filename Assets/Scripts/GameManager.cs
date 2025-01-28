@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameController : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
-    public static GameController instance;
+    public static GameManager instance;
     private void Awake()
     {
         if (instance == null)
@@ -21,6 +21,17 @@ public class GameController : MonoBehaviour
         SceneManager.LoadScene(scene.name);
     }
 
+    public void LoadScene(string _sceneName)
+    {
+        SaveManager.instance.SaveGame();
+        SceneManager.LoadScene(_sceneName);
+    }
+    public void Revive()
+    {
+        PlayerManager.instance.player.stateMachine.ChangeState(PlayerManager.instance.player.idleState);
+        PlayerManager.instance.player.stats.currentHealth = PlayerManager.instance.player.stats.maxHealth.getValue();
+        Pause(true);
+    }
     public void Pause(bool _pause)
     {
         if (_pause)

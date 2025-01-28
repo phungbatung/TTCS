@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class UI_Stats : MonoBehaviour
 {
-    public static UI_Stats instance;
 
     [SerializeField] private Player player;
     [SerializeField] private TextMeshProUGUI offensive;
@@ -14,11 +13,6 @@ public class UI_Stats : MonoBehaviour
 
     private void Awake()
     {
-        if (instance == null)
-            instance = this;
-        else
-            Destroy(gameObject);
-        UpdateStatsUI();
         gameObject.SetActive(false);
     }
 
@@ -29,6 +23,12 @@ public class UI_Stats : MonoBehaviour
     }
     public void UpdateStatsUI()
     {
+        if (offensive is null)
+            Debug.Log("offensive");
+        if (player is null)
+            Debug.Log("player");
+        if (player.stats is null)
+            Debug.Log("stat");
         offensive.text = player.stats.GetOffensiveStats();
         deffensive.text = player.stats.GetDeffensiveStats();
         other.text = player.moveSpeed.ToString();

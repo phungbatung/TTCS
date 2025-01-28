@@ -46,6 +46,6 @@ public class UI_EquipmentShop : MonoBehaviour
         else
             gameObject.SetActive(true);
         isOpen = !isOpen;
-        GameController.instance.Pause(!isOpen);
+        GameManager.instance.Pause(!isOpen);
     }
 }

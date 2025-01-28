@@ -55,19 +55,17 @@ public class FlyThunderGodSkill : Skill
             executeTeleport = false;
             float direction = player.transform.position.x - swordScript.transform.position.x;
             direction = .7f * direction / Mathf.Abs(direction);
-            if (!Physics2D.Raycast(swordScript.transform.position + new Vector3(direction, 0, 0), Vector2.down, .1f, groundLayer))
+            if (!Physics2D.Raycast(swordScript.transform.position + new Vector3(-2 * direction, 0, 0), Vector2.down, .1f, groundLayer))
             {
-                Debug.Log("log1");
+                player.PlayerTeleportTo(swordScript.transform.position + new Vector3( -3f * direction, 0, 0));
+                player.Flip();
+            }
+            else if (!Physics2D.Raycast(swordScript.transform.position + new Vector3(direction, 0, 0), Vector2.down, .1f, groundLayer))
+            {
                 player.PlayerTeleportTo(swordScript.transform.position + new Vector3(direction, 0, 0));
-            }
-            else if (!Physics2D.Raycast(swordScript.transform.position + new Vector3(-direction, 0, 0), Vector2.down, .1f, groundLayer))
-            {
-                Debug.Log("log2");
-                player.PlayerTeleportTo(swordScript.transform.position + new Vector3(-direction, 0, 0));
-            }
+            }            
             else
             {
-                Debug.Log("log3");
                 player.PlayerTeleportTo(swordScript.transform.position);
             }
             TeleportThunderController thunderScript = teleportThunder.Spawn().GetComponent<TeleportThunderController>();

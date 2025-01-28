@@ -35,7 +35,6 @@ public class PlayerTeleportState : PlayerState
         }
         if (stateTimer <= 0)
         {
-            Debug.Log("idle");
             stateMachine.ChangeState(player.idleState);
         }
     }
